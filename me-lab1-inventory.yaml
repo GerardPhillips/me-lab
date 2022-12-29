@@ -1,0 +1,66 @@
+---
+ME_LAB_FABRIC:
+  children:
+    DC1:
+      children:
+        DC1_FABRIC:
+          children:
+            PTP_LEAFS:
+              hosts:
+                media-PTP-1:
+                  ansible_host: 10.90.227.21
+                media-PTP-2:
+                  ansible_host: 10.90.227.23       
+            MEDIA_SPINES:
+              hosts:
+                media-spine-1:
+                  ansible_host: 10.90.227.11
+                media-spine-2:
+                  ansible_host: 10.90.227.12
+            MEDIA_LEAFS:
+              hosts:
+                media-leaf-1:
+                  ansible_host: 10.90.227.25
+                media-leaf-2:
+                  ansible_host: 10.90.227.27
+                media-leaf-3:
+                  ansible_host: 10.90.227.29
+                campus-leaf-4:
+                  ansible_host: 10.90.227.31
+        #DC1_TENANTS_NETWORK:
+          #children:
+            #hosts:
+            #  media-PTP-1:
+        #MEDIA_LEAFS:
+            #PTP_LEAFS:
+  # Only needed for eAPI or SSH
+  # not needed for CVP
+  vars:
+    ansible_network_os: eos
+    ansible_connection: network_cli
+    ansible_httpapi_user: admin
+    ansible_httpapi_password: arista123!
+    ansible_httpapi_use_ssl: True
+    ansible_httpapi_validate_certs: False
+    ansible_httpapi_port: 443
+    ansible_user: admin
+    ansible_password: arista123!
+    ansible_host_key_checking: False
+    ansible_become: yes
+    ansible_become_method: enable
+cloudvision:
+  hosts:
+    cv_server01:
+      ansible_httpapi_host: 10.90.227.147
+      ansible_host: 10.90.227.147
+      ansible_user: cvpadmin
+      ansible_password: arista123!
+      ansible_connection: httpapi
+      ansible_httpapi_use_ssl: True
+      ansible_httpapi_validate_certs: flase
+      ansible_network_os: eos
+      ansible_httpapi_port: 443
+      # Configuration to get Virtual Env information
+      ansible_python_interpreter: $(which python3)
+  
+  

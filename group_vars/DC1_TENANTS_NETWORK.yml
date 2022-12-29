@@ -1,0 +1,52 @@
+---
+tenants:
+  PTP1:
+    vrfs:
+      default:
+        #redistribute_static: true
+        #redistribute_static_route: true
+        #static_routes:
+        #  - destination_address_prefix: 0.0.0.0/0
+        #    gateway: 192.168.3.253
+        #    name: Firewall
+        svis:
+          2222:
+            name: vlan_PTP_1
+            enabled: true
+            nodes:
+              media-PTP-1:
+                ip_address: 172.24.121.65/30
+          #2223:
+          #  name: vlan_PTP_2
+          #  enabled: true
+            #nodes:
+            #  media-PTP-2:
+                #ip_address: 172.24.123.65/30
+  # PTP2:
+  #   vrfs:
+  #     default:
+  #       #redistribute_static: true
+  #       #redistribute_static_route: true
+  #       #static_routes:
+  #       #  - destination_address_prefix: 0.0.0.0/0
+  #       #    gateway: 192.168.3.253
+  #       #    name: Firewall
+  #       svis:
+  #         2223:
+  #           name: vlan_PTP_2
+  #           enabled: true
+  #           nodes:
+  #             media-PTP-2:
+  #               ip_address: 172.24.123.65/30
+  #         #2252:
+  #         #  name: vlan_Media_L1_1
+  #         #  enabled: true
+  #           # nodes:
+  #           #   media-leaf-1:
+  #           #     ip_address: 172.24.225.17/28 
+  #         #2253:
+  #         #  name: vlan_Media_L1_2
+  #         #  enabled: true
+  #           # nodes:
+  #           #   media-leaf-1:
+  #           #     ip_address: 172.24.225.33/28  

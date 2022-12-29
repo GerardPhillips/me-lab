@@ -1,0 +1,100 @@
+---
+- name: Collect EOS version
+  hosts: ME_LAB_FABRIC
+  gather_facts: false
+  collections:
+    - arista.avd
+    - arista.cvp
+  tasks:
+
+    - name: 'reset local folders for output'
+      tags: [build, generate]
+      import_role:
+        name: arista.avd.build_output_folders
+
+    - name: generate intended variables
+      import_role:
+        name: arista.avd.eos_designs
+
+    - name: generate device intended config and documentation
+      import_role:
+        name: arista.avd.eos_cli_config_gen
+
+- name: Configuration deployment with CVP
+  hosts: cv_server01
+  connection: local
+  gather_facts: false
+  collections:
+    - arista.avd
+    - arista.cvp
+  tasks:
+    - name: run CVP provisioning
+      import_role:
+        name: arista.avd.eos_config_deploy_cvp
+      vars:
+        container_root: 'ME_LAB_FABRIC'
+        configlets_prefix: 'DC1'
+        device_filter: 'all'
+        state: present
+        cv_collection: v3
+
+
+
+# - name: upload cvp configlets
+#   hosts: cv_server01
+#   connection: local
+#   gather_facts: false
+#   collections:
+#     - arista.avd
+#     - arista.cvp
+#   tasks:
+#     - name: run it
+#       import_role:
+#         name: arista.avd.cvp_configlet_upload
+#       vars:
+#         configlet_directory: '{{ configlet_dir_var }}'
+#         file_extension: '{{configlet_file_extension}}'
+#         configlets_cvp_prefix: '{{ configlets_prefix_var }}'
+#         #execute_tasks: true
+#         cv_collection: v3
+
+
+# - name: CVP_Deploy
+#   hosts: cv_server01
+#   connection: local
+#   gather_facts: false
+#   collections:
+#     - arista.avd
+#     - arista.cvp
+#   tasks:
+#     - name: run CVP provisioning
+#       import_role:
+#         name: arista.avd.eos_config_deploy_cvp
+#       vars:
+#         container_root: 'ME_LAB'
+#         configlets_prefix: 'DC1-AVD'
+#         device_filter: 'MEDIA_SPINES'
+#         state: present
+#         execute_tasks: false
+#         cv_collection: v3
+
+
+#- name: Configuration deployment with CVP
+#  hosts: cv_server01
+#  connection: local
+#  gather_facts: false
+#  collections:
+#    - arista.avd
+#    - arista.cvp
+# tasks:
+#    - name: run CVP provisioning
+#      import_role:
+#        name: arista.avd.eos_config_deploy_cvp
+#      vars:
+#        container_root: 'AVD_FABRIC'
+#        configlets_prefix: 'AVD'
+#        #device_filter: 'DC'
+#        state: present
+#        cv_collection: v3
+
+

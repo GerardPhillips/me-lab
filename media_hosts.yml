@@ -1,0 +1,1887 @@
+---
+
+- switches:
+    - "media-PTP-1"
+  switch_ports:
+    - "Ethernet11"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-PTP-1"
+  switch_ports:
+    - "Ethernet12"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-PTP-1"
+  switch_ports:
+    - "Ethernet13"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-PTP-1"
+  switch_ports:
+    - "Ethernet14"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-PTP-1"
+  switch_ports:
+    - "Ethernet15"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-PTP-1"
+  switch_ports:
+    - "Ethernet16"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-PTP-1"
+  switch_ports:
+    - "Ethernet17"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-PTP-1"
+  switch_ports:
+    - "Ethernet18"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-PTP-1"
+  switch_ports:
+    - "Ethernet19"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-PTP-1"
+  switch_ports:
+    - "Ethernet20"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-PTP-1"
+  switch_ports:
+    - "Ethernet48"
+  description: Meinberg Interface(cu-cu)
+  speed: forced 1000full
+  mode: access
+  vlans: 2222
+  ptp:
+    enable: true
+    role: bmca
+
+- switches:
+    - "media-PTP-1"
+  switch_ports:
+    - "Ethernet53"
+  description: (Unused) Meinberg SFP-1G-T
+  speed: forced 1000full
+  mode: access
+  vlans: 2222
+  ptp:
+    enable: true
+    role: bmca
+
+- switches:
+    - "media-PTP-1"
+  switch_ports:
+    - "Ethernet54"
+  description: Meinberg 1G Optical
+  speed: forced 1000full
+  mode: access
+  vlans: 2222
+  ptp:
+    enable: true
+    role: bmca
+
+- switches:
+    - "media-PTP-2"
+  switch_ports:
+    - "Ethernet11"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-PTP-2"
+  switch_ports:
+    - "Ethernet12"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-PTP-2"
+  switch_ports:
+    - "Ethernet13"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-PTP-2"
+  switch_ports:
+    - "Ethernet14"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-PTP-2"
+  switch_ports:
+    - "Ethernet15"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-PTP-2"
+  switch_ports:
+    - "Ethernet16"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-PTP-2"
+  switch_ports:
+    - "Ethernet17"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-PTP-2"
+  switch_ports:
+    - "Ethernet18"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-PTP-2"
+  switch_ports:
+    - "Ethernet19"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-PTP-2"
+  switch_ports:
+    - "Ethernet20"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-PTP-2"
+  switch_ports:
+    - "Ethernet45"
+  description: Evertz 5700MSC-IP Eth2
+  speed: forced 1000full
+  structured_config:
+    type: routed  
+  ptp:
+    enable: true
+    role: bmca 
+
+- switches:
+    - "media-PTP-2"
+  switch_ports:
+    - "Ethernet48"
+  description: Meinberg Interface(cu-cu)
+  speed: forced 1000full
+  mode: access
+  vlans: 2222
+  ptp:
+    enable: true
+    role: bmca
+
+- switches:
+    - "media-PTP-2"
+  switch_ports:
+    - "Ethernet53"
+  description: Meinberg SFP-1G-T
+  speed: forced 1000full
+  mode: access
+  vlans: 2222
+  ptp:
+    enable: true
+    role: bmca
+
+- switches:
+    - "media-PTP-2"
+  switch_ports:
+    - "Ethernet54"
+  description: Meinberg 1G Optical
+  speed: forced 1000full
+  mode: access
+  vlans: 2222
+  ptp:
+    enable: true
+    role: bmca
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet6"
+  description: DirectOut EXBOX
+  speed: forced 1000full
+  structured_config:
+    type: routed
+    ip_address: 192.168.40.22/30 
+    pim:
+      ipv4:
+        sparse_mode: true
+    multicast:
+      ipv4:
+        static: true
+  ptp:
+    enable: true 
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet13"
+  description: C100-1 P1-1
+  speed: forced 10000full
+  mode: access
+  vlans: 2253
+  ptp:
+    enable: true
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet14"
+  description: C100-1 P1-2
+  speed: forced 10000full
+  mode: access
+  vlans: 2253
+  ptp:
+    enable: true
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet16"
+  description: C100-1 P1-4
+  speed: forced 10000full
+  mode: access
+  vlans: 2253
+  ptp:
+    enable: true
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet17"
+  description: C100-2 P1-1
+  speed: forced 10000full
+  structured_config:
+    type: routed
+    ip_address: 172.24.225.49/30 
+    pim:
+      ipv4:
+        sparse_mode: true
+    multicast:
+      ipv4:
+        static: true
+  ptp:
+    enable: true
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet18"
+  description: C100-2 P1-2
+  speed: forced 10000full
+  structured_config:
+    type: routed
+    ip_address: 172.24.225.53/30 
+    pim:
+      ipv4:
+        sparse_mode: true
+    multicast:
+      ipv4:
+        static: true
+  ptp:
+    enable: true
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet19"
+  description: C100-2 P1-3
+  speed: forced 10000full
+  structured_config:
+    type: routed
+    ip_address: 172.24.225.57/30 
+    pim:
+      ipv4:
+        sparse_mode: true
+    multicast:
+      ipv4:
+        static: true
+  ptp:
+    enable: true
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet20"
+  description: C100-2 P1-4
+  speed: forced 10000full
+  structured_config:
+    type: routed
+    ip_address: 172.24.225.61/30 
+    pim:
+      ipv4:
+        sparse_mode: true
+    multicast:
+      ipv4:
+        static: true
+  ptp:
+    enable: true
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet21"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet22"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet23"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet24"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet25"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet26"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet27"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet28"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet29"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet30"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet31"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet32"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet33"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet34"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet35"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet36"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet37"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet38"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet39"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet40"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet53/1"
+  description: EVS Neuron
+  speed: forced 100Gfull
+  mode: access
+  vlans: 2252
+  ptp:
+    enable: true
+
+- switches:
+    - "media-leaf-1"
+  switch_ports:
+    - "Ethernet54/1"
+  description: Imagine SNP-2118212563-Data-A
+  speed: forced 100Gfull
+  structured_config:
+    type: routed
+    ip_address: 172.24.100.1/30 
+    pim:
+      ipv4:
+        sparse_mode: true
+    multicast:
+      ipv4:
+        static: true
+  ptp:
+    enable: true
+ 
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet13"
+  description: C100-1 P2-2
+  speed: forced 10000full
+  mode: access
+  vlans: 2271
+  ptp:
+    enable: true
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet14"
+  description: C100-1 P2-2
+  speed: forced 10000full
+  mode: access
+  vlans: 2273
+  ptp:
+    enable: true
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet15"
+  description: C100-1 P2-3
+  speed: forced 10000full
+  mode: access
+  vlans: 2273
+  ptp:
+    enable: true
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet16"
+  description: C100-1 P2-4
+  speed: forced 10000full
+  mode: access
+  vlans: 2273
+  ptp:
+    enable: true
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet17"
+  description: C100-2 P2-1
+  speed: forced 10000full
+  structured_config:
+    type: routed
+    ip_address: 172.24.227.49/30 
+    pim:
+      ipv4:
+        sparse_mode: true
+    multicast:
+      ipv4:
+        static: true
+  ptp:
+    enable: true
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet18"
+  description: C100-2 P2-2
+  speed: forced 10000full
+  structured_config:
+    type: routed
+    ip_address: 172.24.227.53/30 
+    pim:
+      ipv4:
+        sparse_mode: true
+    multicast:
+      ipv4:
+        static: true
+  ptp:
+    enable: true
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet19"
+  description: C100-2 P2-3
+  speed: forced 10000full
+  structured_config:
+    type: routed
+    ip_address: 172.24.227.57/30 
+    pim:
+      ipv4:
+        sparse_mode: true
+    multicast:
+      ipv4:
+        static: true
+  ptp:
+    enable: true
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet20"
+  description: C100-2 P2-4
+  speed: forced 10000full
+  structured_config:
+    type: routed
+    ip_address: 172.24.227.61/30 
+    pim:
+      ipv4:
+        sparse_mode: true
+    multicast:
+      ipv4:
+        static: true
+  ptp:
+    enable: true
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet21"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet22"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet23"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet24"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet25"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet26"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet27"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet28"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed 
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet29"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet30"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet31"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet32"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet33"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet34"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet35"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet36"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet37"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet38"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet39"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet40"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet53/1"
+  description: EVS Neuron
+  speed: forced 100Gfull
+  mode: access
+  vlans: 2272
+  ptp:
+    enable: true
+
+- switches:
+    - "media-leaf-2"
+  switch_ports:
+    - "Ethernet54/1"
+  description: Imagine SNP-2118212563-Data-B
+  speed: forced 100Gfull
+  structured_config:
+    type: routed
+    ip_address: 172.24.200.1/30 
+    pim:
+      ipv4:
+        sparse_mode: true
+    multicast:
+      ipv4:
+        static: true
+  ptp:
+    enable: true
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet1"
+  description: Newt-1 A
+  speed: forced 10000full
+  mode: access
+  vlans: 2291
+  ptp:
+    enable: true
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet2"
+  description: Newt-1 B
+  speed: forced 10000full
+  mode: access
+  vlans: 2292
+  ptp:
+    enable: true
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet3"
+  description: Newt-2 A
+  speed: forced 10000full
+  mode: access
+  vlans: 2293
+  ptp:
+    enable: true
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet4"
+  description: Newt-2 B
+  speed: forced 10000full
+  mode: access
+  vlans: 2294
+  ptp:
+    enable: true
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet11"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet12"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet13"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet14"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet15"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet16"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet17"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet18"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet19"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet20"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet21"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet22"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet23"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet24"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet25"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet26"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet27"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet28"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet29"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet30"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed  
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet31"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet32"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet33"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet34"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet35"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet36"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet37"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet38"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet39"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet40"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed  
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet41"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet42"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet43"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet44"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet45"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet46"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet47"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-leaf-3"
+  switch_ports:
+    - "Ethernet48"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed   
+
+
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet5/1"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed
+
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet6/1"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed  
+
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet7/1"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed  
+
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet8/1"
+  description: mcs senders/receivers
+  structured_config:
+    type: routed
+      
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet9/1"
+  description: mcs senders/receivers
+  structured_config:
+    type: routed  
+
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet10/1"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed  
+
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet11/1"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed 
+
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet12/1"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed 
+
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet13/1"
+  description: C100-2 P1
+  speed: forced 40Gfull
+  structured_config:
+    type: routed
+    ip_address: 172.24.211.5/30 
+    pim:
+      ipv4:
+        sparse_mode: true
+    multicast:
+      ipv4:
+        static: true
+  ptp:
+    enable: true
+
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet14/1"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed 
+
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet15/1"
+  description: Telestream iQ Inspect - Eth2
+  speed: forced 100Gfull
+  structured_config:
+    type: routed
+    ip_address: 172.24.211.9/30 
+    pim:
+      ipv4:
+        sparse_mode: true
+    multicast:
+      ipv4:
+        static: true
+  ptp:
+    enable: true
+
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet16/1"
+  description: smartSCOPE-AristaMaELAB,mcs sender/receiver
+  speed: forced 100Gfull
+  structured_config:
+    type: routed
+    ip_address: 172.24.211.1/30 
+    pim:
+      ipv4:
+        sparse_mode: true
+    multicast:
+      ipv4:
+        static: true
+  ptp:
+    enable: true
+
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet19/1"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed 
+
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet20/1"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed 
+
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet21/1"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed 
+
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet22/1"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed 
+
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet23/1"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed 
+
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet24/1"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed 
+
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet26/1"
+  description: mcs senders/receivers
+  speed: forced 10000full
+  structured_config:
+    type: routed 
+
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet27/2"
+  description: mcs senders/receivers
+  speed: forced 25Gfull
+  structured_config:
+    type: routed 
+
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet27/3"
+  description: mcs senders/receivers
+  speed: forced 25Gfull
+  structured_config:
+    type: routed 
+
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet27/4"
+  description: mcs senders/receivers
+  speed: forced 25Gfull
+  structured_config:
+    type: routed 
+
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet28/2"
+  description: mcs senders/receivers
+  speed: forced 25Gfull
+  structured_config:
+    type: routed 
+
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet28/3"
+  description: mcs senders/receivers
+  speed: forced 25Gfull
+  structured_config:
+    type: routed 
+
+- switches:
+    - "media-spine-1"
+  switch_ports:
+    - "Ethernet28/4"
+  description: mcs senders/receivers
+  speed: forced 25Gfull
+  structured_config:
+    type: routed 
+
+- switches:
+    - "media-spine-2"
+  switch_ports:
+    - "Ethernet5/1"
+  description: Loopback to this Spine Eth 6/1
+  speed: forced 100Gfull
+
+- switches:
+    - "media-spine-2"
+  switch_ports:
+    - "Ethernet6/1"
+  description: Loopback to this Spine Eth 5/1
+  speed: forced 100Gfull
+
+- switches:
+    - "media-spine-2"
+  switch_ports:
+    - "Ethernet8/1"
+  description: mcs senders/receivers
+  speed: forced 100Gfull
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-spine-2"
+  switch_ports:
+    - "Ethernet9/1"
+  description: mcs senders/receivers
+  speed: forced 100Gfull
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-spine-2"
+  switch_ports:
+    - "Ethernet10/1"
+  description: mcs senders/receivers
+  speed: forced 100Gfull
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-spine-2"
+  switch_ports:
+    - "Ethernet11/1"
+  description: mcs senders/receivers
+  speed: forced 100Gfull
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-spine-2"
+  switch_ports:
+    - "Ethernet12/1"
+  description: mcs senders/receivers
+  speed: forced 100Gfull
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-spine-2"
+  switch_ports:
+    - "Ethernet13/1"
+  description: C100-2 P2
+  speed: forced 40Gfull
+  structured_config:
+    type: routed
+    ip_address: 172.24.212.5/30   
+    pim:
+      ipv4:
+        sparse_mode: true
+  ptp:
+    enable: true
+
+- switches:
+    - "media-spine-2"
+  switch_ports:
+    - "Ethernet15/1"
+  description: Telestream iQ Inspect - Eth3
+  speed: forced 100Gfull
+  structured_config:
+    type: routed
+    ip_address: 172.24.212.9/30 
+    pim:
+      ipv4:
+        sparse_mode: true
+    multicast:
+      ipv4:
+        static: true
+  ptp:
+    enable: true
+
+- switches:
+    - "media-spine-2"
+  switch_ports:
+    - "Ethernet16/1"
+  description: smartSCOPE-Arista M&E LAB
+  speed: forced 100Gfull
+  structured_config:
+    type: routed
+    ip_address: 172.24.128.1/30 
+    pim:
+      ipv4:
+        sparse_mode: true
+  ptp:
+    enable: true
+
+- switches:
+    - "media-spine-2"
+  switch_ports:
+    - "Ethernet19/1"
+  description: mcs senders/receivers
+  speed: forced 100Gfull
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-spine-2"
+  switch_ports:
+    - "Ethernet20/1"
+  description: mcs senders/receivers
+  speed: forced 100Gfull
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-spine-2"
+  switch_ports:
+    - "Ethernet21/1"
+  description: mcs senders/receivers
+  speed: forced 100Gfull
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-spine-2"
+  switch_ports:
+    - "Ethernet22/1"
+  description: mcs senders/receivers
+  speed: forced 100Gfull
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-spine-2"
+  switch_ports:
+    - "Ethernet23/1"
+  description: mcs senders/receivers
+  speed: forced 100Gfull
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-spine-2"
+  switch_ports:
+    - "Ethernet24/1"
+  description: mcs senders/receivers
+  speed: forced 100Gfull
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-spine-2"
+  switch_ports:
+    - "Ethernet31/1"
+  description: mcs senders/receivers
+  speed: forced 100Gfull
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-spine-2"
+  switch_ports:
+    - "Ethernet32/1"
+  description: mcs senders/receivers
+  speed: forced 100Gfull
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-spine-2"
+  switch_ports:
+    - "Ethernet33"
+  description: mcs senders/receivers
+  speed: forced 100Gfull
+  structured_config:
+    type: routed   
+
+- switches:
+    - "media-spine-2"
+  switch_ports:
+    - "Ethernet34"
+  description: mcs senders/receivers
+  speed: forced 100Gfull
+  structured_config:
+    type: routed   
+
+
+
+
+
+
+
+- switches:
+    - "campus-leaf-4"
+  switch_ports:
+    - "Ethernet1"
+  description: Lawo Ruby 1
+  speed: forced 1000full
+  mode: access
+  vlans: 2231
+  ptp:
+    enable: true
+
+- switches:
+    - "campus-leaf-4"
+  switch_ports:
+    - "Ethernet2"
+  description: Lawo Ruby 2
+  speed: forced 1000full
+  mode: access
+  vlans: 2231
+  ptp:
+    enable: true
+
+- switches:
+    - "campus-leaf-4"
+  switch_ports:
+    - "Ethernet3"
+  description: Lawo Link 4
+  speed: forced 1000full
+  mode: access
+  vlans: 2231
+  ptp:
+    enable: true
+
+- switches:
+    - "campus-leaf-4"
+  switch_ports:
+    - "Ethernet11"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed
+    ip_address: 172.24.231.49/30
+
+- switches:
+    - "campus-leaf-4"
+  switch_ports:
+    - "Ethernet12"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "campus-leaf-4"
+  switch_ports:
+    - "Ethernet13"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+  
+- switches:
+    - "campus-leaf-4"
+  switch_ports:
+    - "Ethernet14"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "campus-leaf-4"
+  switch_ports:
+    - "Ethernet15"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "campus-leaf-4"
+  switch_ports:
+    - "Ethernet16"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "campus-leaf-4"
+  switch_ports:
+    - "Ethernet17"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "campus-leaf-4"
+  switch_ports:
+    - "Ethernet18"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "campus-leaf-4"
+  switch_ports:
+    - "Ethernet19"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+
+- switches:
+    - "campus-leaf-4"
+  switch_ports:
+    - "Ethernet19"
+  description: mcs senders/receivers
+  speed: forced 1000full
+  structured_config:
+    type: routed   
+

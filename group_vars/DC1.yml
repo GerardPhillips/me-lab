@@ -1,0 +1,200 @@
+---
+dc_name: DC1
+
+# local users
+local_users:
+  # Username with no password configured
+  admin:
+    privilege: 15
+    role: network-admin
+    sha512_password: $6$ttzoDdVO8Uz2SiBF$Ge.hQWy9wPGWyGc9.Q/mMyjycNO.9ylh40Vc.0iiqU/MtR7MKKIuOgbKkOeD3EpPMtN2SBForxog2ZCqv0kbu0
+    #password: "arista123!"
+  cvpadmin:
+    privilege: 15
+    role: network-admin
+    sha512_password: $6$n7NC6yuQmsXgOMKP$UZu7iLcCZgydY8NMdGAz244RVKdWqEikN.9ByPifgwQ90xS3fT6.46j5WcfUxkmVYWhWSgbIpODxVw67VkbkQ0
+    #password: "arista123!"
+  dataminer:
+    privilege: 1
+    role: view-only
+    sha512_password: $6$tDLfGUdh6qFbD7XV$YOgbgeXei40thdIzlH1/Nz38K2IBkBcA6hYe.ihQnyq3qC92qP/ezmFZcrdOSmbF7xo10VegijeznJrn9X9lc.
+
+roles:
+  - name: view-only
+    sequence_numbers:
+      - sequence: 10
+        action: permit
+        command: enable
+      - sequence: 20
+        action: deny
+        mode: "exec"
+        command: reload
+      - sequence: 30
+        action: deny
+        mode: "config-all"
+        command: .*
+      - sequence: 40
+        action: deny
+        mode: "exec"
+        command: clear .*
+      - sequence: 50
+        action: permit
+        command: show .*
+      - sequence: 60
+        action: permit
+        command: bash timeout 1 df -h
+      
+# OOB Management network default gateway.
+mgmt_interface: Management1
+mgmt_gateway: 10.90.227.1
+mgmt_destination_networks:
+  - 0.0.0.0/0
+
+management_cvx:
+  shutdown: false
+  server_hosts:
+    - 10.90.224.188
+  vrf: MGMT
+
+snmp_server:
+  communities:
+    ro:
+      access: ro
+    rw:
+      access: rw
+
+# dns servers.
+dns_domain: MnE.lab
+name_server:
+  source:
+    vrf: MGMT
+  nodes:
+    - 10.90.227.155
+
+aaa_authorization:
+  exec:
+    default: local
+  commands:
+    privilege:
+      - level: 0,15
+        default: local
+
+# NTP Servers IP or DNS name, first NTP server will be preferred, and sourced from Management VRF
+ntp:
+  servers:
+  - name: 172.22.22.50
+    iburst: true
+    vrf: MGMT
+  - name: 198.55.111.50
+    iburst: true
+    vrf: MGMT
+
+
+# sFLow
+sflow:
+  destinations:
+    127.0.0.1:
+  source_interface: loopback0
+  run: true
+
+event_monitor:
+  enabled: true
+
+# Allow 3rd party transceivers on all switches
+# DO NOT DISTRIBITE LICENSE OR CAPABILITY
+service_unsupported_transceiver:
+  license_name: FoxNetworksWoodlandsTesting
+  license_key: e9ae09fb
+
+cvp_instance_ips:
+  - 10.90.227.147
+cvp_ingestauth_key: ''
+terminattr_ingestgrpcurl_port: 9910
+terminattr_smashexcludes: ale,flexCounter,hardware,kni,pulse
+terminattr_ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
+terminattr_disable_aaa: true
+
+queue_monitor_length:
+
+queue_monitor_streaming:
+  enable: true
+
+load_interval:
+  default: 5
+
+monitor_connectivity:
+  shutdown: false
+  hosts:
+    - name: GM1
+      description: GM1
+      ip: 172.24.121.65
+  vrfs:
+    - name: MGMT
+      hosts:
+        - name: Google
+          description: Google
+          ip: 8.8.8.8
+        - name: aws-us-east-1
+          description: aws-us-east-1
+          ip: 52.216.227.10
+          url: http://fredcloudtracereast1.s3-website-us-east-1.amazonaws.com
+        - name: aws-us-west-2
+          description: aws-us-west-2
+          ip: 52.218.182.251
+          url: http://fredwebsitebuckettest.s3-website-us-west-2.amazonaws.com
+        - name: azure-eastus
+          description: aws-us-west-2
+          ip: 52.216.227.10
+          url: http://fredcloudtracereast1.s3-website-us-east-1.amazonaws.com
+
+
+management_api_gnmi:
+  provider: "eos-native"
+  transport:
+    grpc:
+      - name: grpc
+
+management_api_http:
+  enable_http: true
+
+management_api_models:
+  providers:
+    - name: smash
+      paths:
+      - path: bridging
+        disabled: false
+      - path: ptp
+        disabled: false
+      - path: routing
+        disabled: false
+
+#aliases: |
+#< list of alias commands in EOS CLI syntax >
+aliases: |
+  alias sln show lldp neighbors
+  alias conint sh interface | I connected
+  alias connect show interfaces status connected
+  alias descr show int descr
+  alias drops watch 1 diff show int coun dis | nz
+  alias dump bash tcpdump -i %1
+  alias ptpcount watch 1 diff sh ptp interface counters | egrep 'Ethernet|Manage'| grep -v "received: 0" | grep -v sent
+  alias ptpmgmt watch 1 diff sh ptp int count | egrep "Management messages received: | Ethernet" | nz
+  alias rates watch 1 diff show int count rates | nz
+  alias routeage bash echo show ip route | cliribd
+  alias senz show interface counter error | nz
+  alias senzwatch watch 1 diff show interface counter error | nz
+  alias shmc show int | awk '/^[A-Z]/ { intf = $1 } /, address is/ { print intf, $6 }'
+  alias shptp show ptp int counters drop
+  alias snoopcount watch 1 diff sh ip igmp snooping counters | nz
+  alias snoopgroup watch 1 diff sh ip igmp snooping groups | nz
+  alias snz show interface counter | nz
+  alias spd show port-channel %1 detail all
+  alias sqnz show interface counter queue | nz
+  alias srnz show interface counter rate | nz
+  alias watchptp watch 1 diff sh ip igmp snooping group 224.0.1.129 | nz
+  alias igmpgroups show ip igmp snooping groups detail
+  alias ptpwatch watch 1 diff show ptp
+  alias sdnz show int count discard | nz
+  alias sie show ip igmp snoop counters err | nz
+  alias sqml show queue-monitor length
+

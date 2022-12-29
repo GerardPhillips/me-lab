@@ -1,0 +1,51 @@
+---
+type: ptp_leaf
+
+ptp_leaf:
+  defaults:
+    virtual_router_mac_address: 00:1c:73:00:dc:01
+    loopback_ipv4_pool: 172.24.0.0/24
+    # Offset must be >= number of spines
+    loopback_ipv4_offset: 20
+    # Point to Point Network Summary range, assigned as /31 for each
+    # uplink interfaces
+    # Assign range larger than total [spines * total potential leafs * 2]
+    uplink_ipv4_pool: 192.168.100.0/24
+    uplink_switches: [media-spine-1, media-spine-2, media-spine-1, media-spine-2]
+    uplink_interfaces: [Ethernet49/1, Ethernet51/1, Ethernet50/1, Ethernet52/1]
+    max_parallel_uplinks: 4 # per leaf / per spine
+  nodes:
+      media-PTP-1:
+        platform: 720XP
+        id: 1
+        bgp_as: 65421
+        mgmt_ip: 10.90.227.21/24
+        # Interface configured on SPINES to connect to this leaf
+        uplink_switch_interfaces: [Ethernet27/1, Ethernet27/1]
+        uplink_interfaces: [Ethernet51, Ethernet52]
+        structured_config:
+          vlans:
+            2222: 
+                name: vlan_PTP_1
+          vlan_interfaces:
+            vlan 2222:
+              ip_address: 172.24.121.65/30
+              no_autostate: true
+
+      media-PTP-2:
+        platform: 720XP
+        id: 3
+        bgp_as: 65423
+        mgmt_ip: 10.90.227.23/24
+        # Interface configured on SPINES to connect to this leaf
+        uplink_switch_interfaces: [Ethernet28/1, Ethernet28/1]
+        uplink_interfaces: [Ethernet51, Ethernet52]
+        structured_config:
+          vlans:
+            2223: 
+                name: vlan_PTP_2
+          vlan_interfaces:
+            vlan 2223:
+              ip_address: 172.24.123.65/30
+              no_autostate: true
+

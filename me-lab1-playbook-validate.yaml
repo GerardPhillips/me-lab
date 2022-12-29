@@ -1,0 +1,24 @@
+---
+- name: Collect EOS version
+  hosts: ME_LAB_FABRIC
+  gather_facts: false
+  collections:
+    - arista.avd
+    - arista.cvp
+  
+  tasks:
+
+    - name: validate
+      import_role:
+        name: arista.avd.eos_validate_state  
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,71 @@
+---
+type: media_spine
+
+media_spine:
+  defaults:
+    platform: 7280R3
+    bgp_as: 65410
+    virtual_router_mac_address: 00:1c:73:00:dc:01
+    # Overlay loopback IP and same pool can be assigned to both spine and l3leaf switches
+    # If same loopback pool is defined for both spine and l3leaf,
+    # < loopback_ipv4_offset > must be set in either one of the node_types
+    loopback_ipv4_pool: 172.24.0.0/24
+    loopback_ipv4_offset: 10
+    uplink_ipv4_pool: 192.168.101.0/24
+    # Recommended for vEOS
+    bgp_defaults:
+      - 'no bgp default ipv4-unicast'
+      - 'distance bgp 20 200 200'
+      - 'graceful-restart restart-time 300'
+      - 'graceful-restart'
+    structured_config:
+      mcs_client:
+        shutdown: false
+      loopback_interfaces:
+        Loopback1:
+          ip_address: 172.24.0.10/32
+          description: Anycast RP
+      router_pim_sparse_mode:
+        ipv4:
+          rp_addresses:
+          #Can't point to amber loopback0...
+            172.24.0.10:
+          anycast_rps:
+            172.24.0.10:
+              other_anycast_rp_addresses:
+                172.24.0.11:
+                172.24.0.12:
+  nodes:
+    media-spine-1:
+    #loopback0 = pooladdress + ID
+      id: 1
+      mgmt_ip: 10.90.227.11/24
+      bgp_as: 65411
+      # Interfaces configured on mgt spines to connect to this spine
+      #uplink_switch_interfaces: [Ethernet50]
+      #uplink_switches: [jt-nm-mgt-1]
+      #uplink_interfaces: [Ethernet11/1]
+      uplink_interface_speed: forced 10000full
+      
+      structured_config:
+        hardware:
+          speed_groups:
+            3: 
+              serdes: 10g
+    media-spine-2:
+    #loopback0 = pooladdress + ID
+      id: 2
+      mgmt_ip: 10.90.227.12/24
+      bgp_as: 65412
+      # Interfaces configured on mgt spines to connect to this spine
+      #uplink_switch_interfaces: [Ethernet50]
+      #uplink_switches: [jt-nm-mgt-1]
+      #uplink_interfaces: [Ethernet11/1]
+      uplink_interface_speed: forced 10000full
+      structured_config:
+        hardware:
+          speed_groups:
+            3: 
+              serdes: 10g
+
+

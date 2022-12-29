@@ -1,0 +1,77 @@
+---
+
+network_ports: "{{ lookup('file', 'media_hosts.yml') | from_yaml }}"
+
+underlay_multicast: true
+# enables pim on all uplinks
+
+router_pim_sparse_mode:
+  ipv4:
+    rp_addresses:
+      #Can't point to amber loopback0...
+      172.24.0.10:
+ptp:
+  enabled: true
+  profile: aes67-r16-2016 #although this is the default
+  domain: 127
+
+core_interfaces:
+  p2p_links:
+    -
+      # Nodes where this link should be configured
+      nodes: [ media-PTP-1, media-PTP-2 ]
+      # Interfaces where this link should be configured | Required unless using port-channels
+      interfaces: [ Ethernet1, Ethernet1 ]
+      # Enable PTP
+      ptp_enable: true
+      # Do not add this interface to underlay routing protocol
+      include_in_underlay_protocol: false
+    -
+      # Nodes where this link should be configured
+      nodes: [ media-PTP-1, media-PTP-2 ]
+      # Interfaces where this link should be configured | Required unless using port-channels
+      interfaces: [ Ethernet2, Ethernet2 ]
+      # Enable PTP
+      ptp_enable: true
+      # Do not add this interface to underlay routing protocol
+      include_in_underlay_protocol: false
+
+node_type_keys:
+  ptp_leaf:
+    type: ptp_leaf
+    default_overlay_routing_protocol: none
+    connected_endpoints: true
+    network_services:
+      l2: true
+      l3: true
+    default_ptp_priority1: 10
+  media_spine:
+    type: media_spine
+    default_overlay_routing_protocol: none
+    connected_endpoints: true
+    network_services:
+      l2: true
+      l3: true
+    default_ptp_priority1: 20
+  media_leaf:
+    type: media_leaf
+    default_overlay_routing_protocol: none
+    connected_endpoints: true
+    network_services:
+      l2: true
+      l3: true
+    default_ptp_priority1: 30
+  mgt_spine:
+    type: mgt_spine
+    default_overlay_routing_protocol: none
+    connected_endpoints: true
+    network_services:
+      l2: true
+      l3: true
+  mgt_leaf:
+    type: mgt_leaf
+    connected_endpoints: true
+    network_services:
+      l2: true
+    uplink_type: port-channel
+    underlay_router: false
