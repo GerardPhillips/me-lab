@@ -14,20 +14,20 @@
 
 | Total Tests | Total Tests Passed | Total Tests Failed |
 | ----------- | ------------------ | ------------------ |
-| 672 | 495 | 177 |
+| 672 | 379 | 293 |
 
 ### Summary Totals Devices Under Tests
 
 | DUT | Total Tests | Tests Passed | Tests Failed | Categories Failed |
 | --- | ----------- | ------------ | ------------ | ----------------- |
-| campus-leaf-4 |  80 | 66 | 14 | Hardware, NTP, Interface State |
-| media-leaf-1 |  79 | 51 | 28 | Hardware, NTP, Interface State |
-| media-leaf-2 |  75 | 49 | 26 | Hardware, NTP, Interface State |
-| media-leaf-3 |  81 | 41 | 40 | NTP, Interface State |
-| media-PTP-1 |  90 | 76 | 14 | Hardware, NTP, Interface State |
-| media-PTP-2 |  91 | 76 | 15 | Hardware, NTP, Interface State |
-| media-spine-1 |  91 | 67 | 24 | Hardware, NTP, Interface State |
-| media-spine-2 |  85 | 69 | 16 | NTP, Interface State |
+| campus-leaf-4 |  80 | 58 | 22 | Hardware, NTP, Interface State, LLDP Topology, IP Reachability, BGP |
+| media-leaf-1 |  79 | 39 | 40 | Hardware, NTP, Interface State, LLDP Topology, IP Reachability, BGP |
+| media-leaf-2 |  75 | 37 | 38 | Hardware, NTP, Interface State, LLDP Topology, IP Reachability, BGP |
+| media-leaf-3 |  81 | 28 | 53 | NTP, Interface State, LLDP Topology, IP Reachability, BGP |
+| media-PTP-1 |  90 | 71 | 19 | Hardware, NTP, Interface State, IP Reachability, BGP |
+| media-PTP-2 |  91 | 71 | 20 | Hardware, NTP, Interface State, IP Reachability, BGP |
+| media-spine-1 |  91 | 43 | 48 | Hardware, NTP, Interface State, LLDP Topology, IP Reachability, BGP |
+| media-spine-2 |  85 | 32 | 53 | NTP, Interface State, LLDP Topology, IP Reachability, BGP |
 
 ### Summary Totals Per Category
 
@@ -35,10 +35,10 @@
 | ------------- | ----------- | ------------ | ------------ |
 | Hardware |  308 | 296 | 12 |
 | NTP |  8 | 0 | 8 |
-| Interface State |  236 | 79 | 157 |
-| LLDP Topology |  40 | 40 | 0 |
-| IP Reachability |  36 | 36 | 0 |
-| BGP |  44 | 44 | 0 |
+| Interface State |  236 | 45 | 191 |
+| LLDP Topology |  40 | 18 | 22 |
+| IP Reachability |  36 | 6 | 30 |
+| BGP |  44 | 14 | 30 |
 
 ## Failed Test Results Summary
 
@@ -64,6 +64,8 @@
 | 314 | media-PTP-2 | NTP | Synchronised with NTP server | NTP | FAIL | Not synchronised to NTP server |
 | 315 | media-spine-1 | NTP | Synchronised with NTP server | NTP | FAIL | Not synchronised to NTP server |
 | 316 | media-spine-2 | NTP | Synchronised with NTP server | NTP | FAIL | Not synchronised to NTP server |
+| 317 | campus-leaf-4 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet53/1 - P2P_LINK_TO_MEDIA-SPINE-1_Ethernet25/1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
+| 318 | campus-leaf-4 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet54/1 - P2P_LINK_TO_MEDIA-SPINE-2_Ethernet25/1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 319 | campus-leaf-4 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet1 - Lawo Ruby 1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 320 | campus-leaf-4 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet2 - Lawo Ruby 2 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 322 | campus-leaf-4 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet11 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
@@ -75,6 +77,9 @@
 | 328 | campus-leaf-4 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet17 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 329 | campus-leaf-4 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet18 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 330 | campus-leaf-4 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet19 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
+| 332 | media-leaf-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet50/1 - P2P_LINK_TO_MEDIA-SPINE-1_Ethernet2/1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
+| 333 | media-leaf-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet51/1 - P2P_LINK_TO_MEDIA-SPINE-2_Ethernet1/1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
+| 334 | media-leaf-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet52/1 - P2P_LINK_TO_MEDIA-SPINE-2_Ethernet2/1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 335 | media-leaf-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet6 - DirectOut EXBOX | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 339 | media-leaf-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet17 - C100-2 P1-1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 340 | media-leaf-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet18 - C100-2 P1-2 | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
@@ -98,6 +103,9 @@
 | 360 | media-leaf-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet38 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 361 | media-leaf-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet39 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 362 | media-leaf-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet40 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
+| 366 | media-leaf-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet50/1 - P2P_LINK_TO_MEDIA-SPINE-1_Ethernet4/1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
+| 367 | media-leaf-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet51/1 - P2P_LINK_TO_MEDIA-SPINE-2_Ethernet3/1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
+| 368 | media-leaf-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet52/1 - P2P_LINK_TO_MEDIA-SPINE-2_Ethernet4/1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 373 | media-leaf-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet17 - C100-2 P2-1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 374 | media-leaf-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet18 - C100-2 P2-2 | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 375 | media-leaf-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet19 - C100-2 P2-3 | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
@@ -122,7 +130,11 @@
 | 394 | media-leaf-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet38 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 395 | media-leaf-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet39 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 396 | media-leaf-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet40 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
+| 400 | media-leaf-3 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet50/1 - P2P_LINK_TO_MEDIA-SPINE-1_Ethernet18/1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
+| 401 | media-leaf-3 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet51/1 - P2P_LINK_TO_MEDIA-SPINE-2_Ethernet17/1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
+| 402 | media-leaf-3 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet52/1 - P2P_LINK_TO_MEDIA-SPINE-2_Ethernet18/1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 404 | media-leaf-3 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet2 - Newt-1 B | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
+| 405 | media-leaf-3 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet3 - Newt-2 A | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 407 | media-leaf-3 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet11 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 408 | media-leaf-3 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet12 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 409 | media-leaf-3 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet13 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
@@ -173,6 +185,7 @@
 | 458 | media-PTP-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet20 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 459 | media-PTP-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet48 - Meinberg Interface(cu-cu) | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 460 | media-PTP-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet53 - (Unused) Meinberg SFP-1G-T | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
+| 461 | media-PTP-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet54 - Meinberg 1G Optical | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
 | 466 | media-PTP-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet11 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 467 | media-PTP-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet12 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 468 | media-PTP-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet13 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
@@ -184,21 +197,30 @@
 | 474 | media-PTP-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet19 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 475 | media-PTP-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet20 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 476 | media-PTP-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet45 - Evertz 5700MSC-IP Eth2 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
-| 477 | media-PTP-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet48 - Meinberg Interface(cu-cu) | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
+| 477 | media-PTP-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet48 - Meinberg Interface(cu-cu) | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
 | 478 | media-PTP-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet53 - Meinberg SFP-1G-T | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 490 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet6/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 492 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet8/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 493 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet9/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 494 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet10/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 495 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet11/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 496 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet12/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 498 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet14/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 501 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet19/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 502 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet20/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 503 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet21/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 504 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet22/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 505 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet23/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 506 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet24/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
+| 479 | media-PTP-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet54 - Meinberg 1G Optical | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 481 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet2/1 - P2P_LINK_TO_MEDIA-LEAF-1_Ethernet50/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 483 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet4/1 - P2P_LINK_TO_MEDIA-LEAF-2_Ethernet50/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 485 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet18/1 - P2P_LINK_TO_MEDIA-LEAF-3_Ethernet50/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 486 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet25/1 - P2P_LINK_TO_CAMPUS-LEAF-4_Ethernet53/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 490 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet6/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 491 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet7/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 492 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet8/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 493 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet9/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 494 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet10/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 495 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet11/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 496 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet12/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 497 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet13/1 - C100-2 P1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 498 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet14/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 499 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet15/1 - Telestream iQ Inspect - Eth2 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 500 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet16/1 - smartSCOPE-AristaMaELAB,mcs sender/receiver | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 501 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet19/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 502 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet20/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 503 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet21/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 504 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet22/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 505 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet23/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 506 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet24/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
 | 507 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet26/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 508 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet27/2 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 509 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet27/3 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
@@ -206,21 +228,115 @@
 | 511 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet28/2 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 512 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet28/3 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 513 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet28/4 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 525 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet8/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 526 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet9/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 527 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet10/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 528 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet11/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 529 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet12/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 533 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet19/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 534 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet20/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 535 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet21/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 536 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet22/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 537 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet23/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 538 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet24/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
+| 514 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet1/1 - P2P_LINK_TO_MEDIA-LEAF-1_Ethernet51/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 515 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet2/1 - P2P_LINK_TO_MEDIA-LEAF-1_Ethernet52/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 516 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet3/1 - P2P_LINK_TO_MEDIA-LEAF-2_Ethernet51/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 517 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet4/1 - P2P_LINK_TO_MEDIA-LEAF-2_Ethernet52/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 518 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet17/1 - P2P_LINK_TO_MEDIA-LEAF-3_Ethernet51/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 519 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet18/1 - P2P_LINK_TO_MEDIA-LEAF-3_Ethernet52/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 520 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet25/1 - P2P_LINK_TO_CAMPUS-LEAF-4_Ethernet54/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 523 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet5/1 - Loopback to this Spine Eth 6/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 524 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet6/1 - Loopback to this Spine Eth 5/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 525 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet8/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 526 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet9/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 527 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet10/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 528 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet11/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 529 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet12/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 530 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet13/1 - C100-2 P2 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 531 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet15/1 - Telestream iQ Inspect - Eth3 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 532 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet16/1 - smartSCOPE-Arista M&E LAB | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 533 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet19/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 534 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet20/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 535 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet21/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 536 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet22/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 537 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet23/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 538 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet24/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
 | 539 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet31/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 540 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet32/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 541 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet33 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 542 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet34 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
+| 553 | campus-leaf-4 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet53/1 - remote: media-spine-1_Ethernet25/1 | FAIL | Interface Down - N/A |
+| 554 | campus-leaf-4 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet54/1 - remote: media-spine-2_Ethernet25/1 | FAIL | Interface Down - N/A |
+| 556 | media-leaf-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet50/1 - remote: media-spine-1_Ethernet2/1 | FAIL | Interface Down - N/A |
+| 557 | media-leaf-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet51/1 - remote: media-spine-2_Ethernet1/1 | FAIL | Interface Down - N/A |
+| 558 | media-leaf-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet52/1 - remote: media-spine-2_Ethernet2/1 | FAIL | Interface Down - N/A |
+| 560 | media-leaf-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet50/1 - remote: media-spine-1_Ethernet4/1 | FAIL | Interface Down - N/A |
+| 561 | media-leaf-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet51/1 - remote: media-spine-2_Ethernet3/1 | FAIL | Interface Down - N/A |
+| 562 | media-leaf-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet52/1 - remote: media-spine-2_Ethernet4/1 | FAIL | Interface Down - N/A |
+| 564 | media-leaf-3 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet50/1 - remote: media-spine-1_Ethernet18/1 | FAIL | Interface Down - N/A |
+| 565 | media-leaf-3 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet51/1 - remote: media-spine-2_Ethernet17/1 | FAIL | Interface Down - N/A |
+| 566 | media-leaf-3 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet52/1 - remote: media-spine-2_Ethernet18/1 | FAIL | Interface Down - N/A |
+| 576 | media-spine-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet2/1 - remote: media-leaf-1_Ethernet50/1 | FAIL | Interface Down - N/A |
+| 578 | media-spine-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet4/1 - remote: media-leaf-2_Ethernet50/1 | FAIL | Interface Down - N/A |
+| 580 | media-spine-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet18/1 - remote: media-leaf-3_Ethernet50/1 | FAIL | Interface Down - N/A |
+| 581 | media-spine-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet25/1 - remote: campus-leaf-4_Ethernet53/1 | FAIL | Interface Down - N/A |
+| 584 | media-spine-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet1/1 - remote: media-leaf-1_Ethernet51/1 | FAIL | Interface Down - N/A |
+| 585 | media-spine-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet2/1 - remote: media-leaf-1_Ethernet52/1 | FAIL | Interface Down - N/A |
+| 586 | media-spine-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet3/1 - remote: media-leaf-2_Ethernet51/1 | FAIL | Interface Down - N/A |
+| 587 | media-spine-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet4/1 - remote: media-leaf-2_Ethernet52/1 | FAIL | Interface Down - N/A |
+| 588 | media-spine-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet17/1 - remote: media-leaf-3_Ethernet51/1 | FAIL | Interface Down - N/A |
+| 589 | media-spine-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet18/1 - remote: media-leaf-3_Ethernet52/1 | FAIL | Interface Down - N/A |
+| 590 | media-spine-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet25/1 - remote: campus-leaf-4_Ethernet54/1 | FAIL | Interface Down - N/A |
+| 593 | campus-leaf-4 | IP Reachability | ip reachability test p2p links | Source: campus-leaf-4_Ethernet53/1 - Destination: media-spine-1_Ethernet25/1 | FAIL | 100% packet loss |
+| 594 | campus-leaf-4 | IP Reachability | ip reachability test p2p links | Source: campus-leaf-4_Ethernet54/1 - Destination: media-spine-2_Ethernet25/1 | FAIL | 100% packet loss |
+| 596 | media-leaf-1 | IP Reachability | ip reachability test p2p links | Source: media-leaf-1_Ethernet50/1 - Destination: media-spine-1_Ethernet2/1 | FAIL | 100% packet loss |
+| 597 | media-leaf-1 | IP Reachability | ip reachability test p2p links | Source: media-leaf-1_Ethernet51/1 - Destination: media-spine-2_Ethernet1/1 | FAIL | 100% packet loss |
+| 598 | media-leaf-1 | IP Reachability | ip reachability test p2p links | Source: media-leaf-1_Ethernet52/1 - Destination: media-spine-2_Ethernet2/1 | FAIL | 100% packet loss |
+| 600 | media-leaf-2 | IP Reachability | ip reachability test p2p links | Source: media-leaf-2_Ethernet50/1 - Destination: media-spine-1_Ethernet4/1 | FAIL | 100% packet loss |
+| 601 | media-leaf-2 | IP Reachability | ip reachability test p2p links | Source: media-leaf-2_Ethernet51/1 - Destination: media-spine-2_Ethernet3/1 | FAIL | 100% packet loss |
+| 602 | media-leaf-2 | IP Reachability | ip reachability test p2p links | Source: media-leaf-2_Ethernet52/1 - Destination: media-spine-2_Ethernet4/1 | FAIL | 100% packet loss |
+| 604 | media-leaf-3 | IP Reachability | ip reachability test p2p links | Source: media-leaf-3_Ethernet50/1 - Destination: media-spine-1_Ethernet18/1 | FAIL | 100% packet loss |
+| 605 | media-leaf-3 | IP Reachability | ip reachability test p2p links | Source: media-leaf-3_Ethernet51/1 - Destination: media-spine-2_Ethernet17/1 | FAIL | 100% packet loss |
+| 606 | media-leaf-3 | IP Reachability | ip reachability test p2p links | Source: media-leaf-3_Ethernet52/1 - Destination: media-spine-2_Ethernet18/1 | FAIL | 100% packet loss |
+| 607 | media-PTP-1 | IP Reachability | ip reachability test p2p links | Source: media-PTP-1_Ethernet51 - Destination: media-spine-1_Ethernet27/1 | FAIL | 100% packet loss |
+| 608 | media-PTP-1 | IP Reachability | ip reachability test p2p links | Source: media-PTP-1_Ethernet52 - Destination: media-spine-2_Ethernet27/1 | FAIL | 100% packet loss |
+| 609 | media-PTP-2 | IP Reachability | ip reachability test p2p links | Source: media-PTP-2_Ethernet51 - Destination: media-spine-1_Ethernet28/1 | FAIL | 100% packet loss |
+| 610 | media-PTP-2 | IP Reachability | ip reachability test p2p links | Source: media-PTP-2_Ethernet52 - Destination: media-spine-2_Ethernet28/1 | FAIL | 100% packet loss |
+| 612 | media-spine-1 | IP Reachability | ip reachability test p2p links | Source: media-spine-1_Ethernet2/1 - Destination: media-leaf-1_Ethernet50/1 | FAIL | 100% packet loss |
+| 614 | media-spine-1 | IP Reachability | ip reachability test p2p links | Source: media-spine-1_Ethernet4/1 - Destination: media-leaf-2_Ethernet50/1 | FAIL | 100% packet loss |
+| 616 | media-spine-1 | IP Reachability | ip reachability test p2p links | Source: media-spine-1_Ethernet18/1 - Destination: media-leaf-3_Ethernet50/1 | FAIL | 100% packet loss |
+| 617 | media-spine-1 | IP Reachability | ip reachability test p2p links | Source: media-spine-1_Ethernet25/1 - Destination: campus-leaf-4_Ethernet53/1 | FAIL | 100% packet loss |
+| 618 | media-spine-1 | IP Reachability | ip reachability test p2p links | Source: media-spine-1_Ethernet27/1 - Destination: media-PTP-1_Ethernet51 | FAIL | 100% packet loss |
+| 619 | media-spine-1 | IP Reachability | ip reachability test p2p links | Source: media-spine-1_Ethernet28/1 - Destination: media-PTP-2_Ethernet51 | FAIL | 100% packet loss |
+| 620 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet1/1 - Destination: media-leaf-1_Ethernet51/1 | FAIL | 100% packet loss |
+| 621 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet2/1 - Destination: media-leaf-1_Ethernet52/1 | FAIL | 100% packet loss |
+| 622 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet3/1 - Destination: media-leaf-2_Ethernet51/1 | FAIL | 100% packet loss |
+| 623 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet4/1 - Destination: media-leaf-2_Ethernet52/1 | FAIL | 100% packet loss |
+| 624 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet17/1 - Destination: media-leaf-3_Ethernet51/1 | FAIL | 100% packet loss |
+| 625 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet18/1 - Destination: media-leaf-3_Ethernet52/1 | FAIL | 100% packet loss |
+| 626 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet25/1 - Destination: campus-leaf-4_Ethernet54/1 | FAIL | 100% packet loss |
+| 627 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet27/1 - Destination: media-PTP-1_Ethernet52 | FAIL | 100% packet loss |
+| 628 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet28/1 - Destination: media-PTP-2_Ethernet52 | FAIL | 100% packet loss |
+| 637 | campus-leaf-4 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.160 | FAIL | Session state Idle |
+| 638 | campus-leaf-4 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.162 | FAIL | Session state Idle |
+| 640 | media-leaf-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.68 | FAIL | Session state Idle |
+| 641 | media-leaf-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.66 | FAIL | Session state Idle |
+| 642 | media-leaf-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.70 | FAIL | Session state Idle |
+| 644 | media-leaf-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.100 | FAIL | Session state Idle |
+| 645 | media-leaf-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.98 | FAIL | Session state Idle |
+| 646 | media-leaf-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.102 | FAIL | Session state Idle |
+| 648 | media-leaf-3 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.132 | FAIL | Session state Idle |
+| 649 | media-leaf-3 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.130 | FAIL | Session state Idle |
+| 650 | media-leaf-3 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.134 | FAIL | Session state Idle |
+| 651 | media-PTP-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.100.0 | FAIL | Session state Idle |
+| 652 | media-PTP-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.100.2 | FAIL | Session state Idle |
+| 653 | media-PTP-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.100.64 | FAIL | Session state Idle |
+| 654 | media-PTP-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.100.66 | FAIL | Session state Idle |
+| 656 | media-spine-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.69 | FAIL | Session state Idle |
+| 658 | media-spine-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.101 | FAIL | Session state Idle |
+| 660 | media-spine-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.133 | FAIL | Session state Idle |
+| 661 | media-spine-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.161 | FAIL | Session state Idle |
+| 662 | media-spine-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.100.1 | FAIL | Session state Idle |
+| 663 | media-spine-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.100.65 | FAIL | Session state Idle |
+| 664 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.67 | FAIL | Session state Idle |
+| 665 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.71 | FAIL | Session state Idle |
+| 666 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.99 | FAIL | Session state Idle |
+| 667 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.103 | FAIL | Session state Idle |
+| 668 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.131 | FAIL | Session state Idle |
+| 669 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.135 | FAIL | Session state Idle |
+| 670 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.163 | FAIL | Session state Idle |
+| 671 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.100.3 | FAIL | Session state Idle |
+| 672 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.100.67 | FAIL | Session state Idle |
 
 ## All Test Results
 
@@ -542,8 +658,8 @@
 | 314 | media-PTP-2 | NTP | Synchronised with NTP server | NTP | FAIL | Not synchronised to NTP server |
 | 315 | media-spine-1 | NTP | Synchronised with NTP server | NTP | FAIL | Not synchronised to NTP server |
 | 316 | media-spine-2 | NTP | Synchronised with NTP server | NTP | FAIL | Not synchronised to NTP server |
-| 317 | campus-leaf-4 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet53/1 - P2P_LINK_TO_MEDIA-SPINE-1_Ethernet25/1 | PASS | - |
-| 318 | campus-leaf-4 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet54/1 - P2P_LINK_TO_MEDIA-SPINE-2_Ethernet25/1 | PASS | - |
+| 317 | campus-leaf-4 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet53/1 - P2P_LINK_TO_MEDIA-SPINE-1_Ethernet25/1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
+| 318 | campus-leaf-4 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet54/1 - P2P_LINK_TO_MEDIA-SPINE-2_Ethernet25/1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 319 | campus-leaf-4 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet1 - Lawo Ruby 1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 320 | campus-leaf-4 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet2 - Lawo Ruby 2 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 321 | campus-leaf-4 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet3 - Lawo Link 4 | PASS | - |
@@ -557,9 +673,9 @@
 | 329 | campus-leaf-4 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet18 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 330 | campus-leaf-4 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet19 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 331 | media-leaf-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet49/1 - P2P_LINK_TO_MEDIA-SPINE-1_Ethernet1/1 | PASS | - |
-| 332 | media-leaf-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet50/1 - P2P_LINK_TO_MEDIA-SPINE-1_Ethernet2/1 | PASS | - |
-| 333 | media-leaf-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet51/1 - P2P_LINK_TO_MEDIA-SPINE-2_Ethernet1/1 | PASS | - |
-| 334 | media-leaf-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet52/1 - P2P_LINK_TO_MEDIA-SPINE-2_Ethernet2/1 | PASS | - |
+| 332 | media-leaf-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet50/1 - P2P_LINK_TO_MEDIA-SPINE-1_Ethernet2/1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
+| 333 | media-leaf-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet51/1 - P2P_LINK_TO_MEDIA-SPINE-2_Ethernet1/1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
+| 334 | media-leaf-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet52/1 - P2P_LINK_TO_MEDIA-SPINE-2_Ethernet2/1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 335 | media-leaf-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet6 - DirectOut EXBOX | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 336 | media-leaf-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet13 - C100-1 P1-1 | PASS | - |
 | 337 | media-leaf-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet14 - C100-1 P1-2 | PASS | - |
@@ -591,9 +707,9 @@
 | 363 | media-leaf-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet53/1 - EVS Neuron | PASS | - |
 | 364 | media-leaf-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet54/1 - Imagine SNP-2118212563-Data-A | PASS | - |
 | 365 | media-leaf-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet49/1 - P2P_LINK_TO_MEDIA-SPINE-1_Ethernet3/1 | PASS | - |
-| 366 | media-leaf-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet50/1 - P2P_LINK_TO_MEDIA-SPINE-1_Ethernet4/1 | PASS | - |
-| 367 | media-leaf-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet51/1 - P2P_LINK_TO_MEDIA-SPINE-2_Ethernet3/1 | PASS | - |
-| 368 | media-leaf-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet52/1 - P2P_LINK_TO_MEDIA-SPINE-2_Ethernet4/1 | PASS | - |
+| 366 | media-leaf-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet50/1 - P2P_LINK_TO_MEDIA-SPINE-1_Ethernet4/1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
+| 367 | media-leaf-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet51/1 - P2P_LINK_TO_MEDIA-SPINE-2_Ethernet3/1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
+| 368 | media-leaf-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet52/1 - P2P_LINK_TO_MEDIA-SPINE-2_Ethernet4/1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 369 | media-leaf-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet13 - C100-1 P2-2 | PASS | - |
 | 370 | media-leaf-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet14 - C100-1 P2-2 | PASS | - |
 | 371 | media-leaf-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet15 - C100-1 P2-3 | PASS | - |
@@ -625,12 +741,12 @@
 | 397 | media-leaf-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet53/1 - EVS Neuron | PASS | - |
 | 398 | media-leaf-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet54/1 - Imagine SNP-2118212563-Data-B | PASS | - |
 | 399 | media-leaf-3 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet49/1 - P2P_LINK_TO_MEDIA-SPINE-1_Ethernet17/1 | PASS | - |
-| 400 | media-leaf-3 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet50/1 - P2P_LINK_TO_MEDIA-SPINE-1_Ethernet18/1 | PASS | - |
-| 401 | media-leaf-3 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet51/1 - P2P_LINK_TO_MEDIA-SPINE-2_Ethernet17/1 | PASS | - |
-| 402 | media-leaf-3 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet52/1 - P2P_LINK_TO_MEDIA-SPINE-2_Ethernet18/1 | PASS | - |
+| 400 | media-leaf-3 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet50/1 - P2P_LINK_TO_MEDIA-SPINE-1_Ethernet18/1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
+| 401 | media-leaf-3 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet51/1 - P2P_LINK_TO_MEDIA-SPINE-2_Ethernet17/1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
+| 402 | media-leaf-3 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet52/1 - P2P_LINK_TO_MEDIA-SPINE-2_Ethernet18/1 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 403 | media-leaf-3 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet1 - Newt-1 A | PASS | - |
 | 404 | media-leaf-3 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet2 - Newt-1 B | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
-| 405 | media-leaf-3 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet3 - Newt-2 A | PASS | - |
+| 405 | media-leaf-3 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet3 - Newt-2 A | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 406 | media-leaf-3 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet4 - Newt-2 B | PASS | - |
 | 407 | media-leaf-3 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet11 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 408 | media-leaf-3 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet12 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
@@ -686,7 +802,7 @@
 | 458 | media-PTP-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet20 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 459 | media-PTP-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet48 - Meinberg Interface(cu-cu) | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 460 | media-PTP-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet53 - (Unused) Meinberg SFP-1G-T | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 461 | media-PTP-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet54 - Meinberg 1G Optical | PASS | - |
+| 461 | media-PTP-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet54 - Meinberg 1G Optical | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
 | 462 | media-PTP-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet51 - P2P_LINK_TO_MEDIA-SPINE-1_Ethernet28/1 | PASS | - |
 | 463 | media-PTP-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet52 - P2P_LINK_TO_MEDIA-SPINE-2_Ethernet28/1 | PASS | - |
 | 464 | media-PTP-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet1 - P2P_LINK_TO_media-PTP-1_Ethernet1 | PASS | - |
@@ -702,36 +818,36 @@
 | 474 | media-PTP-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet19 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 475 | media-PTP-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet20 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
 | 476 | media-PTP-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet45 - Evertz 5700MSC-IP Eth2 | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
-| 477 | media-PTP-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet48 - Meinberg Interface(cu-cu) | FAIL | Interface shutdown: False - interface status: down - line protocol status: down |
+| 477 | media-PTP-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet48 - Meinberg Interface(cu-cu) | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
 | 478 | media-PTP-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet53 - Meinberg SFP-1G-T | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 479 | media-PTP-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet54 - Meinberg 1G Optical | PASS | - |
+| 479 | media-PTP-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet54 - Meinberg 1G Optical | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
 | 480 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet1/1 - P2P_LINK_TO_MEDIA-LEAF-1_Ethernet49/1 | PASS | - |
-| 481 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet2/1 - P2P_LINK_TO_MEDIA-LEAF-1_Ethernet50/1 | PASS | - |
+| 481 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet2/1 - P2P_LINK_TO_MEDIA-LEAF-1_Ethernet50/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
 | 482 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet3/1 - P2P_LINK_TO_MEDIA-LEAF-2_Ethernet49/1 | PASS | - |
-| 483 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet4/1 - P2P_LINK_TO_MEDIA-LEAF-2_Ethernet50/1 | PASS | - |
+| 483 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet4/1 - P2P_LINK_TO_MEDIA-LEAF-2_Ethernet50/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
 | 484 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet17/1 - P2P_LINK_TO_MEDIA-LEAF-3_Ethernet49/1 | PASS | - |
-| 485 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet18/1 - P2P_LINK_TO_MEDIA-LEAF-3_Ethernet50/1 | PASS | - |
-| 486 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet25/1 - P2P_LINK_TO_CAMPUS-LEAF-4_Ethernet53/1 | PASS | - |
+| 485 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet18/1 - P2P_LINK_TO_MEDIA-LEAF-3_Ethernet50/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 486 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet25/1 - P2P_LINK_TO_CAMPUS-LEAF-4_Ethernet53/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
 | 487 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet27/1 - P2P_LINK_TO_MEDIA-PTP-1_Ethernet51 | PASS | - |
 | 488 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet28/1 - P2P_LINK_TO_MEDIA-PTP-2_Ethernet51 | PASS | - |
 | 489 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet5/1 - mcs senders/receivers | PASS | - |
-| 490 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet6/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 491 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet7/1 - mcs senders/receivers | PASS | - |
-| 492 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet8/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 493 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet9/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 494 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet10/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 495 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet11/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 496 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet12/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 497 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet13/1 - C100-2 P1 | PASS | - |
-| 498 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet14/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 499 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet15/1 - Telestream iQ Inspect - Eth2 | PASS | - |
-| 500 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet16/1 - smartSCOPE-AristaMaELAB,mcs sender/receiver | PASS | - |
-| 501 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet19/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 502 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet20/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 503 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet21/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 504 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet22/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 505 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet23/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 506 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet24/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
+| 490 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet6/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 491 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet7/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 492 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet8/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 493 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet9/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 494 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet10/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 495 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet11/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 496 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet12/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 497 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet13/1 - C100-2 P1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 498 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet14/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 499 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet15/1 - Telestream iQ Inspect - Eth2 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 500 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet16/1 - smartSCOPE-AristaMaELAB,mcs sender/receiver | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 501 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet19/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 502 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet20/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 503 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet21/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 504 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet22/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 505 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet23/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 506 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet24/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
 | 507 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet26/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 508 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet27/2 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 509 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet27/3 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
@@ -739,31 +855,31 @@
 | 511 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet28/2 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 512 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet28/3 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 513 | media-spine-1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet28/4 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 514 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet1/1 - P2P_LINK_TO_MEDIA-LEAF-1_Ethernet51/1 | PASS | - |
-| 515 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet2/1 - P2P_LINK_TO_MEDIA-LEAF-1_Ethernet52/1 | PASS | - |
-| 516 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet3/1 - P2P_LINK_TO_MEDIA-LEAF-2_Ethernet51/1 | PASS | - |
-| 517 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet4/1 - P2P_LINK_TO_MEDIA-LEAF-2_Ethernet52/1 | PASS | - |
-| 518 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet17/1 - P2P_LINK_TO_MEDIA-LEAF-3_Ethernet51/1 | PASS | - |
-| 519 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet18/1 - P2P_LINK_TO_MEDIA-LEAF-3_Ethernet52/1 | PASS | - |
-| 520 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet25/1 - P2P_LINK_TO_CAMPUS-LEAF-4_Ethernet54/1 | PASS | - |
+| 514 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet1/1 - P2P_LINK_TO_MEDIA-LEAF-1_Ethernet51/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 515 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet2/1 - P2P_LINK_TO_MEDIA-LEAF-1_Ethernet52/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 516 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet3/1 - P2P_LINK_TO_MEDIA-LEAF-2_Ethernet51/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 517 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet4/1 - P2P_LINK_TO_MEDIA-LEAF-2_Ethernet52/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 518 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet17/1 - P2P_LINK_TO_MEDIA-LEAF-3_Ethernet51/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 519 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet18/1 - P2P_LINK_TO_MEDIA-LEAF-3_Ethernet52/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 520 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet25/1 - P2P_LINK_TO_CAMPUS-LEAF-4_Ethernet54/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
 | 521 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet27/1 - P2P_LINK_TO_MEDIA-PTP-1_Ethernet52 | PASS | - |
 | 522 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet28/1 - P2P_LINK_TO_MEDIA-PTP-2_Ethernet52 | PASS | - |
-| 523 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet5/1 - Loopback to this Spine Eth 6/1 | PASS | - |
-| 524 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet6/1 - Loopback to this Spine Eth 5/1 | PASS | - |
-| 525 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet8/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 526 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet9/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 527 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet10/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 528 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet11/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 529 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet12/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 530 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet13/1 - C100-2 P2 | PASS | - |
-| 531 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet15/1 - Telestream iQ Inspect - Eth3 | PASS | - |
-| 532 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet16/1 - smartSCOPE-Arista M&E LAB | PASS | - |
-| 533 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet19/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 534 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet20/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 535 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet21/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 536 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet22/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 537 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet23/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
-| 538 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet24/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
+| 523 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet5/1 - Loopback to this Spine Eth 6/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 524 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet6/1 - Loopback to this Spine Eth 5/1 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 525 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet8/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 526 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet9/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 527 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet10/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 528 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet11/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 529 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet12/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 530 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet13/1 - C100-2 P2 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 531 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet15/1 - Telestream iQ Inspect - Eth3 | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 532 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet16/1 - smartSCOPE-Arista M&E LAB | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: down |
+| 533 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet19/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 534 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet20/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 535 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet21/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 536 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet22/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 537 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet23/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
+| 538 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet24/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: adminDown - line protocol status: notPresent |
 | 539 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet31/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 540 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet32/1 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
 | 541 | media-spine-2 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet33 - mcs senders/receivers | FAIL | Interface shutdown: False - interface status: down - line protocol status: notPresent |
@@ -778,20 +894,20 @@
 | 550 | media-spine-1 | Interface State | Loopback Interface Status & Line Protocol == "up" | Loopback1 - Anycast RP | PASS | - |
 | 551 | media-spine-2 | Interface State | Loopback Interface Status & Line Protocol == "up" | Loopback0 - Router_ID | PASS | - |
 | 552 | media-spine-2 | Interface State | Loopback Interface Status & Line Protocol == "up" | Loopback1 - Anycast RP | PASS | - |
-| 553 | campus-leaf-4 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet53/1 - remote: media-spine-1_Ethernet25/1 | PASS | - |
-| 554 | campus-leaf-4 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet54/1 - remote: media-spine-2_Ethernet25/1 | PASS | - |
+| 553 | campus-leaf-4 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet53/1 - remote: media-spine-1_Ethernet25/1 | FAIL | Interface Down - N/A |
+| 554 | campus-leaf-4 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet54/1 - remote: media-spine-2_Ethernet25/1 | FAIL | Interface Down - N/A |
 | 555 | media-leaf-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet49/1 - remote: media-spine-1_Ethernet1/1 | PASS | - |
-| 556 | media-leaf-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet50/1 - remote: media-spine-1_Ethernet2/1 | PASS | - |
-| 557 | media-leaf-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet51/1 - remote: media-spine-2_Ethernet1/1 | PASS | - |
-| 558 | media-leaf-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet52/1 - remote: media-spine-2_Ethernet2/1 | PASS | - |
+| 556 | media-leaf-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet50/1 - remote: media-spine-1_Ethernet2/1 | FAIL | Interface Down - N/A |
+| 557 | media-leaf-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet51/1 - remote: media-spine-2_Ethernet1/1 | FAIL | Interface Down - N/A |
+| 558 | media-leaf-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet52/1 - remote: media-spine-2_Ethernet2/1 | FAIL | Interface Down - N/A |
 | 559 | media-leaf-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet49/1 - remote: media-spine-1_Ethernet3/1 | PASS | - |
-| 560 | media-leaf-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet50/1 - remote: media-spine-1_Ethernet4/1 | PASS | - |
-| 561 | media-leaf-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet51/1 - remote: media-spine-2_Ethernet3/1 | PASS | - |
-| 562 | media-leaf-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet52/1 - remote: media-spine-2_Ethernet4/1 | PASS | - |
+| 560 | media-leaf-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet50/1 - remote: media-spine-1_Ethernet4/1 | FAIL | Interface Down - N/A |
+| 561 | media-leaf-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet51/1 - remote: media-spine-2_Ethernet3/1 | FAIL | Interface Down - N/A |
+| 562 | media-leaf-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet52/1 - remote: media-spine-2_Ethernet4/1 | FAIL | Interface Down - N/A |
 | 563 | media-leaf-3 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet49/1 - remote: media-spine-1_Ethernet17/1 | PASS | - |
-| 564 | media-leaf-3 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet50/1 - remote: media-spine-1_Ethernet18/1 | PASS | - |
-| 565 | media-leaf-3 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet51/1 - remote: media-spine-2_Ethernet17/1 | PASS | - |
-| 566 | media-leaf-3 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet52/1 - remote: media-spine-2_Ethernet18/1 | PASS | - |
+| 564 | media-leaf-3 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet50/1 - remote: media-spine-1_Ethernet18/1 | FAIL | Interface Down - N/A |
+| 565 | media-leaf-3 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet51/1 - remote: media-spine-2_Ethernet17/1 | FAIL | Interface Down - N/A |
+| 566 | media-leaf-3 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet52/1 - remote: media-spine-2_Ethernet18/1 | FAIL | Interface Down - N/A |
 | 567 | media-PTP-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet51 - remote: media-spine-1_Ethernet27/1 | PASS | - |
 | 568 | media-PTP-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet52 - remote: media-spine-2_Ethernet27/1 | PASS | - |
 | 569 | media-PTP-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet1 - remote: media-PTP-2_Ethernet1 | PASS | - |
@@ -801,59 +917,59 @@
 | 573 | media-PTP-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet1 - remote: media-PTP-1_Ethernet1 | PASS | - |
 | 574 | media-PTP-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet2 - remote: media-PTP-1_Ethernet2 | PASS | - |
 | 575 | media-spine-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet1/1 - remote: media-leaf-1_Ethernet49/1 | PASS | - |
-| 576 | media-spine-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet2/1 - remote: media-leaf-1_Ethernet50/1 | PASS | - |
+| 576 | media-spine-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet2/1 - remote: media-leaf-1_Ethernet50/1 | FAIL | Interface Down - N/A |
 | 577 | media-spine-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet3/1 - remote: media-leaf-2_Ethernet49/1 | PASS | - |
-| 578 | media-spine-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet4/1 - remote: media-leaf-2_Ethernet50/1 | PASS | - |
+| 578 | media-spine-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet4/1 - remote: media-leaf-2_Ethernet50/1 | FAIL | Interface Down - N/A |
 | 579 | media-spine-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet17/1 - remote: media-leaf-3_Ethernet49/1 | PASS | - |
-| 580 | media-spine-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet18/1 - remote: media-leaf-3_Ethernet50/1 | PASS | - |
-| 581 | media-spine-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet25/1 - remote: campus-leaf-4_Ethernet53/1 | PASS | - |
+| 580 | media-spine-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet18/1 - remote: media-leaf-3_Ethernet50/1 | FAIL | Interface Down - N/A |
+| 581 | media-spine-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet25/1 - remote: campus-leaf-4_Ethernet53/1 | FAIL | Interface Down - N/A |
 | 582 | media-spine-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet27/1 - remote: media-PTP-1_Ethernet51 | PASS | - |
 | 583 | media-spine-1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet28/1 - remote: media-PTP-2_Ethernet51 | PASS | - |
-| 584 | media-spine-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet1/1 - remote: media-leaf-1_Ethernet51/1 | PASS | - |
-| 585 | media-spine-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet2/1 - remote: media-leaf-1_Ethernet52/1 | PASS | - |
-| 586 | media-spine-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet3/1 - remote: media-leaf-2_Ethernet51/1 | PASS | - |
-| 587 | media-spine-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet4/1 - remote: media-leaf-2_Ethernet52/1 | PASS | - |
-| 588 | media-spine-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet17/1 - remote: media-leaf-3_Ethernet51/1 | PASS | - |
-| 589 | media-spine-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet18/1 - remote: media-leaf-3_Ethernet52/1 | PASS | - |
-| 590 | media-spine-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet25/1 - remote: campus-leaf-4_Ethernet54/1 | PASS | - |
+| 584 | media-spine-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet1/1 - remote: media-leaf-1_Ethernet51/1 | FAIL | Interface Down - N/A |
+| 585 | media-spine-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet2/1 - remote: media-leaf-1_Ethernet52/1 | FAIL | Interface Down - N/A |
+| 586 | media-spine-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet3/1 - remote: media-leaf-2_Ethernet51/1 | FAIL | Interface Down - N/A |
+| 587 | media-spine-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet4/1 - remote: media-leaf-2_Ethernet52/1 | FAIL | Interface Down - N/A |
+| 588 | media-spine-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet17/1 - remote: media-leaf-3_Ethernet51/1 | FAIL | Interface Down - N/A |
+| 589 | media-spine-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet18/1 - remote: media-leaf-3_Ethernet52/1 | FAIL | Interface Down - N/A |
+| 590 | media-spine-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet25/1 - remote: campus-leaf-4_Ethernet54/1 | FAIL | Interface Down - N/A |
 | 591 | media-spine-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet27/1 - remote: media-PTP-1_Ethernet52 | PASS | - |
 | 592 | media-spine-2 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet28/1 - remote: media-PTP-2_Ethernet52 | PASS | - |
-| 593 | campus-leaf-4 | IP Reachability | ip reachability test p2p links | Source: campus-leaf-4_Ethernet53/1 - Destination: media-spine-1_Ethernet25/1 | PASS | - |
-| 594 | campus-leaf-4 | IP Reachability | ip reachability test p2p links | Source: campus-leaf-4_Ethernet54/1 - Destination: media-spine-2_Ethernet25/1 | PASS | - |
+| 593 | campus-leaf-4 | IP Reachability | ip reachability test p2p links | Source: campus-leaf-4_Ethernet53/1 - Destination: media-spine-1_Ethernet25/1 | FAIL | 100% packet loss |
+| 594 | campus-leaf-4 | IP Reachability | ip reachability test p2p links | Source: campus-leaf-4_Ethernet54/1 - Destination: media-spine-2_Ethernet25/1 | FAIL | 100% packet loss |
 | 595 | media-leaf-1 | IP Reachability | ip reachability test p2p links | Source: media-leaf-1_Ethernet49/1 - Destination: media-spine-1_Ethernet1/1 | PASS | - |
-| 596 | media-leaf-1 | IP Reachability | ip reachability test p2p links | Source: media-leaf-1_Ethernet50/1 - Destination: media-spine-1_Ethernet2/1 | PASS | - |
-| 597 | media-leaf-1 | IP Reachability | ip reachability test p2p links | Source: media-leaf-1_Ethernet51/1 - Destination: media-spine-2_Ethernet1/1 | PASS | - |
-| 598 | media-leaf-1 | IP Reachability | ip reachability test p2p links | Source: media-leaf-1_Ethernet52/1 - Destination: media-spine-2_Ethernet2/1 | PASS | - |
+| 596 | media-leaf-1 | IP Reachability | ip reachability test p2p links | Source: media-leaf-1_Ethernet50/1 - Destination: media-spine-1_Ethernet2/1 | FAIL | 100% packet loss |
+| 597 | media-leaf-1 | IP Reachability | ip reachability test p2p links | Source: media-leaf-1_Ethernet51/1 - Destination: media-spine-2_Ethernet1/1 | FAIL | 100% packet loss |
+| 598 | media-leaf-1 | IP Reachability | ip reachability test p2p links | Source: media-leaf-1_Ethernet52/1 - Destination: media-spine-2_Ethernet2/1 | FAIL | 100% packet loss |
 | 599 | media-leaf-2 | IP Reachability | ip reachability test p2p links | Source: media-leaf-2_Ethernet49/1 - Destination: media-spine-1_Ethernet3/1 | PASS | - |
-| 600 | media-leaf-2 | IP Reachability | ip reachability test p2p links | Source: media-leaf-2_Ethernet50/1 - Destination: media-spine-1_Ethernet4/1 | PASS | - |
-| 601 | media-leaf-2 | IP Reachability | ip reachability test p2p links | Source: media-leaf-2_Ethernet51/1 - Destination: media-spine-2_Ethernet3/1 | PASS | - |
-| 602 | media-leaf-2 | IP Reachability | ip reachability test p2p links | Source: media-leaf-2_Ethernet52/1 - Destination: media-spine-2_Ethernet4/1 | PASS | - |
+| 600 | media-leaf-2 | IP Reachability | ip reachability test p2p links | Source: media-leaf-2_Ethernet50/1 - Destination: media-spine-1_Ethernet4/1 | FAIL | 100% packet loss |
+| 601 | media-leaf-2 | IP Reachability | ip reachability test p2p links | Source: media-leaf-2_Ethernet51/1 - Destination: media-spine-2_Ethernet3/1 | FAIL | 100% packet loss |
+| 602 | media-leaf-2 | IP Reachability | ip reachability test p2p links | Source: media-leaf-2_Ethernet52/1 - Destination: media-spine-2_Ethernet4/1 | FAIL | 100% packet loss |
 | 603 | media-leaf-3 | IP Reachability | ip reachability test p2p links | Source: media-leaf-3_Ethernet49/1 - Destination: media-spine-1_Ethernet17/1 | PASS | - |
-| 604 | media-leaf-3 | IP Reachability | ip reachability test p2p links | Source: media-leaf-3_Ethernet50/1 - Destination: media-spine-1_Ethernet18/1 | PASS | - |
-| 605 | media-leaf-3 | IP Reachability | ip reachability test p2p links | Source: media-leaf-3_Ethernet51/1 - Destination: media-spine-2_Ethernet17/1 | PASS | - |
-| 606 | media-leaf-3 | IP Reachability | ip reachability test p2p links | Source: media-leaf-3_Ethernet52/1 - Destination: media-spine-2_Ethernet18/1 | PASS | - |
-| 607 | media-PTP-1 | IP Reachability | ip reachability test p2p links | Source: media-PTP-1_Ethernet51 - Destination: media-spine-1_Ethernet27/1 | PASS | - |
-| 608 | media-PTP-1 | IP Reachability | ip reachability test p2p links | Source: media-PTP-1_Ethernet52 - Destination: media-spine-2_Ethernet27/1 | PASS | - |
-| 609 | media-PTP-2 | IP Reachability | ip reachability test p2p links | Source: media-PTP-2_Ethernet51 - Destination: media-spine-1_Ethernet28/1 | PASS | - |
-| 610 | media-PTP-2 | IP Reachability | ip reachability test p2p links | Source: media-PTP-2_Ethernet52 - Destination: media-spine-2_Ethernet28/1 | PASS | - |
+| 604 | media-leaf-3 | IP Reachability | ip reachability test p2p links | Source: media-leaf-3_Ethernet50/1 - Destination: media-spine-1_Ethernet18/1 | FAIL | 100% packet loss |
+| 605 | media-leaf-3 | IP Reachability | ip reachability test p2p links | Source: media-leaf-3_Ethernet51/1 - Destination: media-spine-2_Ethernet17/1 | FAIL | 100% packet loss |
+| 606 | media-leaf-3 | IP Reachability | ip reachability test p2p links | Source: media-leaf-3_Ethernet52/1 - Destination: media-spine-2_Ethernet18/1 | FAIL | 100% packet loss |
+| 607 | media-PTP-1 | IP Reachability | ip reachability test p2p links | Source: media-PTP-1_Ethernet51 - Destination: media-spine-1_Ethernet27/1 | FAIL | 100% packet loss |
+| 608 | media-PTP-1 | IP Reachability | ip reachability test p2p links | Source: media-PTP-1_Ethernet52 - Destination: media-spine-2_Ethernet27/1 | FAIL | 100% packet loss |
+| 609 | media-PTP-2 | IP Reachability | ip reachability test p2p links | Source: media-PTP-2_Ethernet51 - Destination: media-spine-1_Ethernet28/1 | FAIL | 100% packet loss |
+| 610 | media-PTP-2 | IP Reachability | ip reachability test p2p links | Source: media-PTP-2_Ethernet52 - Destination: media-spine-2_Ethernet28/1 | FAIL | 100% packet loss |
 | 611 | media-spine-1 | IP Reachability | ip reachability test p2p links | Source: media-spine-1_Ethernet1/1 - Destination: media-leaf-1_Ethernet49/1 | PASS | - |
-| 612 | media-spine-1 | IP Reachability | ip reachability test p2p links | Source: media-spine-1_Ethernet2/1 - Destination: media-leaf-1_Ethernet50/1 | PASS | - |
+| 612 | media-spine-1 | IP Reachability | ip reachability test p2p links | Source: media-spine-1_Ethernet2/1 - Destination: media-leaf-1_Ethernet50/1 | FAIL | 100% packet loss |
 | 613 | media-spine-1 | IP Reachability | ip reachability test p2p links | Source: media-spine-1_Ethernet3/1 - Destination: media-leaf-2_Ethernet49/1 | PASS | - |
-| 614 | media-spine-1 | IP Reachability | ip reachability test p2p links | Source: media-spine-1_Ethernet4/1 - Destination: media-leaf-2_Ethernet50/1 | PASS | - |
+| 614 | media-spine-1 | IP Reachability | ip reachability test p2p links | Source: media-spine-1_Ethernet4/1 - Destination: media-leaf-2_Ethernet50/1 | FAIL | 100% packet loss |
 | 615 | media-spine-1 | IP Reachability | ip reachability test p2p links | Source: media-spine-1_Ethernet17/1 - Destination: media-leaf-3_Ethernet49/1 | PASS | - |
-| 616 | media-spine-1 | IP Reachability | ip reachability test p2p links | Source: media-spine-1_Ethernet18/1 - Destination: media-leaf-3_Ethernet50/1 | PASS | - |
-| 617 | media-spine-1 | IP Reachability | ip reachability test p2p links | Source: media-spine-1_Ethernet25/1 - Destination: campus-leaf-4_Ethernet53/1 | PASS | - |
-| 618 | media-spine-1 | IP Reachability | ip reachability test p2p links | Source: media-spine-1_Ethernet27/1 - Destination: media-PTP-1_Ethernet51 | PASS | - |
-| 619 | media-spine-1 | IP Reachability | ip reachability test p2p links | Source: media-spine-1_Ethernet28/1 - Destination: media-PTP-2_Ethernet51 | PASS | - |
-| 620 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet1/1 - Destination: media-leaf-1_Ethernet51/1 | PASS | - |
-| 621 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet2/1 - Destination: media-leaf-1_Ethernet52/1 | PASS | - |
-| 622 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet3/1 - Destination: media-leaf-2_Ethernet51/1 | PASS | - |
-| 623 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet4/1 - Destination: media-leaf-2_Ethernet52/1 | PASS | - |
-| 624 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet17/1 - Destination: media-leaf-3_Ethernet51/1 | PASS | - |
-| 625 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet18/1 - Destination: media-leaf-3_Ethernet52/1 | PASS | - |
-| 626 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet25/1 - Destination: campus-leaf-4_Ethernet54/1 | PASS | - |
-| 627 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet27/1 - Destination: media-PTP-1_Ethernet52 | PASS | - |
-| 628 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet28/1 - Destination: media-PTP-2_Ethernet52 | PASS | - |
+| 616 | media-spine-1 | IP Reachability | ip reachability test p2p links | Source: media-spine-1_Ethernet18/1 - Destination: media-leaf-3_Ethernet50/1 | FAIL | 100% packet loss |
+| 617 | media-spine-1 | IP Reachability | ip reachability test p2p links | Source: media-spine-1_Ethernet25/1 - Destination: campus-leaf-4_Ethernet53/1 | FAIL | 100% packet loss |
+| 618 | media-spine-1 | IP Reachability | ip reachability test p2p links | Source: media-spine-1_Ethernet27/1 - Destination: media-PTP-1_Ethernet51 | FAIL | 100% packet loss |
+| 619 | media-spine-1 | IP Reachability | ip reachability test p2p links | Source: media-spine-1_Ethernet28/1 - Destination: media-PTP-2_Ethernet51 | FAIL | 100% packet loss |
+| 620 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet1/1 - Destination: media-leaf-1_Ethernet51/1 | FAIL | 100% packet loss |
+| 621 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet2/1 - Destination: media-leaf-1_Ethernet52/1 | FAIL | 100% packet loss |
+| 622 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet3/1 - Destination: media-leaf-2_Ethernet51/1 | FAIL | 100% packet loss |
+| 623 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet4/1 - Destination: media-leaf-2_Ethernet52/1 | FAIL | 100% packet loss |
+| 624 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet17/1 - Destination: media-leaf-3_Ethernet51/1 | FAIL | 100% packet loss |
+| 625 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet18/1 - Destination: media-leaf-3_Ethernet52/1 | FAIL | 100% packet loss |
+| 626 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet25/1 - Destination: campus-leaf-4_Ethernet54/1 | FAIL | 100% packet loss |
+| 627 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet27/1 - Destination: media-PTP-1_Ethernet52 | FAIL | 100% packet loss |
+| 628 | media-spine-2 | IP Reachability | ip reachability test p2p links | Source: media-spine-2_Ethernet28/1 - Destination: media-PTP-2_Ethernet52 | FAIL | 100% packet loss |
 | 629 | campus-leaf-4 | BGP | ArBGP is configured and operating | ArBGP | PASS | - |
 | 630 | media-leaf-1 | BGP | ArBGP is configured and operating | ArBGP | PASS | - |
 | 631 | media-leaf-2 | BGP | ArBGP is configured and operating | ArBGP | PASS | - |
@@ -862,39 +978,39 @@
 | 634 | media-PTP-2 | BGP | ArBGP is configured and operating | ArBGP | PASS | - |
 | 635 | media-spine-1 | BGP | ArBGP is configured and operating | ArBGP | PASS | - |
 | 636 | media-spine-2 | BGP | ArBGP is configured and operating | ArBGP | PASS | - |
-| 637 | campus-leaf-4 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.160 | PASS | - |
-| 638 | campus-leaf-4 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.162 | PASS | - |
+| 637 | campus-leaf-4 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.160 | FAIL | Session state Idle |
+| 638 | campus-leaf-4 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.162 | FAIL | Session state Idle |
 | 639 | media-leaf-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.64 | PASS | - |
-| 640 | media-leaf-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.68 | PASS | - |
-| 641 | media-leaf-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.66 | PASS | - |
-| 642 | media-leaf-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.70 | PASS | - |
+| 640 | media-leaf-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.68 | FAIL | Session state Idle |
+| 641 | media-leaf-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.66 | FAIL | Session state Idle |
+| 642 | media-leaf-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.70 | FAIL | Session state Idle |
 | 643 | media-leaf-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.96 | PASS | - |
-| 644 | media-leaf-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.100 | PASS | - |
-| 645 | media-leaf-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.98 | PASS | - |
-| 646 | media-leaf-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.102 | PASS | - |
+| 644 | media-leaf-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.100 | FAIL | Session state Idle |
+| 645 | media-leaf-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.98 | FAIL | Session state Idle |
+| 646 | media-leaf-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.102 | FAIL | Session state Idle |
 | 647 | media-leaf-3 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.128 | PASS | - |
-| 648 | media-leaf-3 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.132 | PASS | - |
-| 649 | media-leaf-3 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.130 | PASS | - |
-| 650 | media-leaf-3 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.134 | PASS | - |
-| 651 | media-PTP-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.100.0 | PASS | - |
-| 652 | media-PTP-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.100.2 | PASS | - |
-| 653 | media-PTP-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.100.64 | PASS | - |
-| 654 | media-PTP-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.100.66 | PASS | - |
+| 648 | media-leaf-3 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.132 | FAIL | Session state Idle |
+| 649 | media-leaf-3 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.130 | FAIL | Session state Idle |
+| 650 | media-leaf-3 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.134 | FAIL | Session state Idle |
+| 651 | media-PTP-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.100.0 | FAIL | Session state Idle |
+| 652 | media-PTP-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.100.2 | FAIL | Session state Idle |
+| 653 | media-PTP-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.100.64 | FAIL | Session state Idle |
+| 654 | media-PTP-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.100.66 | FAIL | Session state Idle |
 | 655 | media-spine-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.65 | PASS | - |
-| 656 | media-spine-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.69 | PASS | - |
+| 656 | media-spine-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.69 | FAIL | Session state Idle |
 | 657 | media-spine-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.97 | PASS | - |
-| 658 | media-spine-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.101 | PASS | - |
+| 658 | media-spine-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.101 | FAIL | Session state Idle |
 | 659 | media-spine-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.129 | PASS | - |
-| 660 | media-spine-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.133 | PASS | - |
-| 661 | media-spine-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.161 | PASS | - |
-| 662 | media-spine-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.100.1 | PASS | - |
-| 663 | media-spine-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.100.65 | PASS | - |
-| 664 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.67 | PASS | - |
-| 665 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.71 | PASS | - |
-| 666 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.99 | PASS | - |
-| 667 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.103 | PASS | - |
-| 668 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.131 | PASS | - |
-| 669 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.135 | PASS | - |
-| 670 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.163 | PASS | - |
-| 671 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.100.3 | PASS | - |
-| 672 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.100.67 | PASS | - |
+| 660 | media-spine-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.133 | FAIL | Session state Idle |
+| 661 | media-spine-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.161 | FAIL | Session state Idle |
+| 662 | media-spine-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.100.1 | FAIL | Session state Idle |
+| 663 | media-spine-1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.100.65 | FAIL | Session state Idle |
+| 664 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.67 | FAIL | Session state Idle |
+| 665 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.71 | FAIL | Session state Idle |
+| 666 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.99 | FAIL | Session state Idle |
+| 667 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.103 | FAIL | Session state Idle |
+| 668 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.131 | FAIL | Session state Idle |
+| 669 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.135 | FAIL | Session state Idle |
+| 670 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.102.163 | FAIL | Session state Idle |
+| 671 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.100.3 | FAIL | Session state Idle |
+| 672 | media-spine-2 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 192.168.100.67 | FAIL | Session state Idle |
