@@ -1,0 +1,22 @@
+Pre-demo tidy up.
+CVP - remove open change Controls
+CVP - Cancel 9 tasks
+Delete me-lab?
+Get from Github?
+
+
+
+
+# Build the configs and push to cvp
+ansible-playbook -i me-lab1-inventory.yaml me-lab1-playbook.yaml
+
+-- View Intended configs
+-- See Configs pushed to CVP as configs
+-- View Change Controls available
+-- Action So we can now make that Change
+-- and push the configs
+
+#Make a Change
+-- Add the 4th leaf.
+
+
