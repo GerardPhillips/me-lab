@@ -163,7 +163,7 @@ ptp monitor threshold missing-message sync 3 sequence-ids
 
 | Transport | SSL Profile | VRF | Notification Timestamp | ACL |
 | --------- | ----------- | --- | ---------------------- | --- |
-| grpc | - | - | last-change-time | - |
+| grpc | - | MGMT | last-change-time | - |
 
 Provider eos-native is configured.
 
@@ -173,6 +173,7 @@ Provider eos-native is configured.
 !
 management api gnmi
    transport grpc grpc
+      vrf MGMT
    provider eos-native
 ```
 

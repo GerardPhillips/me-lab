@@ -153,6 +153,7 @@ management_api_gnmi:
   transport:
     grpc:
       - name: grpc
+        vrf: MGMT
 
 management_api_http:
   enable_http: true

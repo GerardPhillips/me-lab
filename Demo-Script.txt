@@ -5,6 +5,14 @@ Delete me-lab?
 Get from Github?
 
 
+-- git config --global user.name "GerardPhillips"
+-- git config --local user.email "gerard.phillips@outlook.com"
+-- git clone https://github.com/GerardPhillips/me-lab 
+-- git status
+-- git add 
+-- git commit 
+-- git push
+
 
 
 # Build the configs and push to cvp
