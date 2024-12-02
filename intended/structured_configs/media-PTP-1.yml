@@ -1,28 +1,43 @@
+hostname: media-PTP-1
+is_deployed: true
+serial_number: JPE20284615
 router_bgp:
   as: '65421'
   router_id: 172.24.0.21
-  bgp_defaults:
-  - maximum-paths 4 ecmp 4
+  bgp:
+    default:
+      ipv4_unicast: false
+  maximum_paths:
+    paths: 4
+    ecmp: 4
+  redistribute:
+    connected:
+      enabled: true
+      route_map: RM-CONN-2-BGP
+  updates:
+    wait_install: true
   peer_groups:
-    IPv4-UNDERLAY-PEERS:
-      type: ipv4
-      maximum_routes: 12000
-      send_community: all
+  - name: IPv4-UNDERLAY-PEERS
+    type: ipv4
+    password: 9EcjYv60iv6MU0UKvxnA3Q==
+    bfd: true
+    maximum_routes: 12000
+    send_community: all
   address_family_ipv4:
     peer_groups:
-      IPv4-UNDERLAY-PEERS:
-        activate: true
-  redistribute_routes:
-    connected: {}
+    - name: IPv4-UNDERLAY-PEERS
+      activate: true
   neighbors:
-    192.168.100.0:
-      peer_group: IPv4-UNDERLAY-PEERS
-      remote_as: '65411'
-      description: media-spine-1_Ethernet27/1
-    192.168.100.2:
-      peer_group: IPv4-UNDERLAY-PEERS
-      remote_as: '65412'
-      description: media-spine-2_Ethernet27/1
+  - ip_address: 192.168.100.0
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65411'
+    peer: media-spine-1
+    description: media-spine-1_Ethernet27/1
+  - ip_address: 192.168.100.2
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65412'
+    peer: media-spine-2
+    description: media-spine-2_Ethernet27/1
 static_routes:
 - vrf: MGMT
   destination_address_prefix: 0.0.0.0/0
@@ -32,48 +47,44 @@ ip_routing: true
 router_multicast:
   ipv4:
     routing: true
-daemon_terminattr:
-  cvaddrs:
-  - 10.90.227.147:9910
-  cvauth:
-    method: key
-    key: ''
-  cvvrf: MGMT
-  smashexcludes: ale,flexCounter,hardware,kni,pulse
-  ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
-  disable_aaa: true
 vlan_internal_order:
   allocation: ascending
   range:
     beginning: 1006
     ending: 1199
+aaa_root:
+  disabled: true
+config_end: true
+enable_password:
+  disabled: true
+transceiver_qsfp_default_mode_4x10: true
 local_users:
-  admin:
-    privilege: 15
-    role: network-admin
-    sha512_password: $6$ttzoDdVO8Uz2SiBF$Ge.hQWy9wPGWyGc9.Q/mMyjycNO.9ylh40Vc.0iiqU/MtR7MKKIuOgbKkOeD3EpPMtN2SBForxog2ZCqv0kbu0
-  cvpadmin:
-    privilege: 15
-    role: network-admin
-    sha512_password: $6$n7NC6yuQmsXgOMKP$UZu7iLcCZgydY8NMdGAz244RVKdWqEikN.9ByPifgwQ90xS3fT6.46j5WcfUxkmVYWhWSgbIpODxVw67VkbkQ0
-  dataminer:
-    privilege: 1
-    role: view-only
-    sha512_password: $6$tDLfGUdh6qFbD7XV$YOgbgeXei40thdIzlH1/Nz38K2IBkBcA6hYe.ihQnyq3qC92qP/ezmFZcrdOSmbF7xo10VegijeznJrn9X9lc.
+- name: admin
+  privilege: 15
+  role: network-admin
+  sha512_password: $6$ttzoDdVO8Uz2SiBF$Ge.hQWy9wPGWyGc9.Q/mMyjycNO.9ylh40Vc.0iiqU/MtR7MKKIuOgbKkOeD3EpPMtN2SBForxog2ZCqv0kbu0
+- name: cvpadmin
+  privilege: 15
+  role: network-admin
+  sha512_password: $6$n7NC6yuQmsXgOMKP$UZu7iLcCZgydY8NMdGAz244RVKdWqEikN.9ByPifgwQ90xS3fT6.46j5WcfUxkmVYWhWSgbIpODxVw67VkbkQ0
+- name: dataminer
+  privilege: 1
+  role: view-only
+  sha512_password: $6$tDLfGUdh6qFbD7XV$YOgbgeXei40thdIzlH1/Nz38K2IBkBcA6hYe.ihQnyq3qC92qP/ezmFZcrdOSmbF7xo10VegijeznJrn9X9lc.
 vrfs:
-  MGMT:
-    ip_routing: false
+- name: MGMT
+  ip_routing: false
 management_interfaces:
-  Management1:
-    description: oob_management
-    shutdown: false
-    vrf: MGMT
-    ip_address: 10.90.227.21/24
-    gateway: 10.90.227.1
-    type: oob
+- name: Management1
+  description: oob_management_interface
+  shutdown: false
+  vrf: MGMT
+  ip_address: 10.90.227.21/24
+  gateway: 10.90.227.1
+  type: oob
 management_api_http:
   enable_vrfs:
-    MGMT: {}
+  - name: MGMT
   enable_https: true
 ptp:
   mode: boundary
@@ -94,221 +105,130 @@ ptp:
         follow_up: 3
         sync: 3
 ethernet_interfaces:
-  Ethernet51:
-    peer: media-spine-1
-    peer_interface: Ethernet27/1
-    peer_type: media_spine
-    description: P2P_LINK_TO_MEDIA-SPINE-1_Ethernet27/1
-    shutdown: false
-    mtu: 9000
-    type: routed
-    ptp:
-      announce:
-        interval: 0
-        timeout: 3
-      delay_req: -3
-      sync_message:
-        interval: -3
-      transport: ipv4
-      enable: true
-    ip_address: 192.168.100.1/31
-    pim:
-      ipv4:
-        sparse_mode: true
-  Ethernet52:
-    peer: media-spine-2
-    peer_interface: Ethernet27/1
-    peer_type: media_spine
-    description: P2P_LINK_TO_MEDIA-SPINE-2_Ethernet27/1
-    shutdown: false
-    mtu: 9000
-    type: routed
-    ptp:
-      announce:
-        interval: 0
-        timeout: 3
-      delay_req: -3
-      sync_message:
-        interval: -3
-      transport: ipv4
-      enable: true
-    ip_address: 192.168.100.3/31
-    pim:
-      ipv4:
-        sparse_mode: true
-  Ethernet1:
-    peer: media-PTP-2
-    peer_interface: Ethernet1
-    peer_type: ptp_leaf
-    description: P2P_LINK_TO_media-PTP-2_Ethernet1
-    type: routed
-    shutdown: false
-    mtu: 9000
-    ptp:
-      announce:
-        interval: 0
-        timeout: 3
-      delay_req: -3
-      sync_message:
-        interval: -3
-      transport: ipv4
-      enable: true
-  Ethernet2:
-    peer: media-PTP-2
-    peer_interface: Ethernet2
-    peer_type: ptp_leaf
-    description: P2P_LINK_TO_media-PTP-2_Ethernet2
-    type: routed
-    shutdown: false
-    mtu: 9000
-    ptp:
-      announce:
-        interval: 0
-        timeout: 3
-      delay_req: -3
-      sync_message:
-        interval: -3
-      transport: ipv4
-      enable: true
-  Ethernet11:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 1000full
-    type: routed
-    shutdown: false
-  Ethernet12:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 1000full
-    type: routed
-    shutdown: false
-  Ethernet13:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 1000full
-    type: routed
-    shutdown: false
-  Ethernet14:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 1000full
-    type: routed
-    shutdown: false
-  Ethernet15:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 1000full
-    type: routed
-    shutdown: false
-  Ethernet16:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 1000full
-    type: routed
-    shutdown: false
-  Ethernet17:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 1000full
-    type: routed
-    shutdown: false
-  Ethernet18:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 1000full
-    type: routed
-    shutdown: false
-  Ethernet19:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 1000full
-    type: routed
-    shutdown: false
-  Ethernet20:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 1000full
-    type: routed
-    shutdown: false
-  Ethernet48:
-    peer: Meinberg Interface(cu-cu)
-    peer_type: network_port
-    description: Meinberg Interface(cu-cu)
-    speed: forced 1000full
-    type: switched
-    shutdown: false
+- name: Ethernet51
+  peer: media-spine-1
+  peer_interface: Ethernet27/1
+  peer_type: media_spine
+  description: P2P_media-spine-1_Ethernet27/1
+  shutdown: false
+  mtu: 9214
+  switchport:
+    enabled: false
+  ptp:
+    announce:
+      interval: 0
+      timeout: 3
+    delay_req: -3
+    sync_message:
+      interval: -3
+    transport: ipv4
+    enable: true
+  ip_address: 192.168.100.1/31
+  pim:
+    ipv4:
+      sparse_mode: true
+- name: Ethernet52
+  peer: media-spine-2
+  peer_interface: Ethernet27/1
+  peer_type: media_spine
+  description: P2P_media-spine-2_Ethernet27/1
+  shutdown: false
+  mtu: 9214
+  switchport:
+    enabled: false
+  ptp:
+    announce:
+      interval: 0
+      timeout: 3
+    delay_req: -3
+    sync_message:
+      interval: -3
+    transport: ipv4
+    enable: true
+  ip_address: 192.168.100.3/31
+  pim:
+    ipv4:
+      sparse_mode: true
+- name: Ethernet1
+  peer: media-PTP-2
+  peer_interface: Ethernet1
+  peer_type: ptp_leaf
+  switchport:
+    enabled: false
+  shutdown: false
+  mtu: 9214
+  description: P2P_media-PTP-2_Ethernet1
+  ptp:
+    announce:
+      interval: 0
+      timeout: 3
+    delay_req: -3
+    sync_message:
+      interval: -3
+    transport: ipv4
+    enable: true
+- name: Ethernet2
+  peer: media-PTP-2
+  peer_interface: Ethernet2
+  peer_type: ptp_leaf
+  switchport:
+    enabled: false
+  shutdown: false
+  mtu: 9214
+  description: P2P_media-PTP-2_Ethernet2
+  ptp:
+    announce:
+      interval: 0
+      timeout: 3
+    delay_req: -3
+    sync_message:
+      interval: -3
+    transport: ipv4
+    enable: true
+- name: Ethernet48
+  peer_type: network_port
+  description: Meinberg Interface(cu-cu)
+  speed: forced 1000full
+  shutdown: false
+  switchport:
+    enabled: true
     mode: access
-    vlans: 2222
-    ptp:
-      announce:
-        interval: 0
-        timeout: 3
-      delay_req: -3
-      sync_message:
-        interval: -3
-      transport: ipv4
-      enable: true
-      role: master
-  Ethernet53:
-    peer: (Unused) Meinberg SFP-1G-T
-    peer_type: network_port
-    description: (Unused) Meinberg SFP-1G-T
-    speed: forced 1000full
-    type: switched
-    shutdown: false
-    mode: access
-    vlans: 2222
-    ptp:
-      announce:
-        interval: 0
-        timeout: 3
-      delay_req: -3
-      sync_message:
-        interval: -3
-      transport: ipv4
-      enable: true
-      role: master
-  Ethernet54:
-    peer: Meinberg 1G Optical
-    peer_type: network_port
-    description: Meinberg 1G Optical
-    speed: forced 1000full
-    type: switched
-    shutdown: false
-    mode: access
-    vlans: 2222
-    ptp:
-      announce:
-        interval: 0
-        timeout: 3
-      delay_req: -3
-      sync_message:
-        interval: -3
-      transport: ipv4
-      enable: true
-      role: master
+    access_vlan: '2222'
+  ptp:
+    announce:
+      interval: 0
+      timeout: 3
+    delay_req: -3
+    sync_message:
+      interval: -3
+    transport: ipv4
+    enable: true
 loopback_interfaces:
-  Loopback0:
-    description: Router_ID
-    shutdown: false
-    ip_address: 172.24.0.21/32
+- name: Loopback0
+  description: ROUTER_ID
+  shutdown: false
+  ip_address: 172.24.0.21/32
+prefix_lists:
+- name: PL-LOOPBACKS-EVPN-OVERLAY
+  sequence_numbers:
+  - sequence: 10
+    action: permit 172.24.0.0/24 eq 32
+route_maps:
+- name: RM-CONN-2-BGP
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    match:
+    - ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY
 ip_igmp_snooping:
   globally_enabled: true
 ip_virtual_router_mac_address: 00:1c:73:00:dc:01
+metadata:
+  platform: 720XP
 vlans:
-  2222:
-    name: vlan_PTP_1
+- id: 2222
+  name: vlan_PTP_1
 vlan_interfaces:
-  vlan 2222:
-    ip_address: 172.24.121.65/30
-    no_autostate: true
+- name: vlan2222
+  ip_address: 172.24.121.65/30
+  no_autostate: true

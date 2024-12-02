@@ -1,32 +1,34 @@
 # media-PTP-2
-# Table of Contents
+
+## Table of Contents
 
 - [Management](#management)
   - [Management Interfaces](#management-interfaces)
   - [DNS Domain](#dns-domain)
-  - [Name Servers](#name-servers)
+  - [IP Name Servers](#ip-name-servers)
   - [NTP](#ntp)
   - [PTP](#ptp)
-  - [Management API GNMI](#management-api-gnmi)
+  - [Management API gNMI](#management-api-gnmi)
   - [Management CVX Summary](#management-cvx-summary)
   - [Management API HTTP](#management-api-http)
   - [Management API Models](#management-api-models)
 - [Authentication](#authentication)
   - [Local Users](#local-users)
   - [Roles](#roles)
+  - [Enable Password](#enable-password)
   - [AAA Authorization](#aaa-authorization)
-- [Aliases](#aliases)
+- [Aliases Device Configuration](#aliases-device-configuration)
 - [Monitoring](#monitoring)
   - [TerminAttr Daemon](#terminattr-daemon)
   - [SNMP](#snmp)
   - [SFlow](#sflow)
 - [Monitor Connectivity](#monitor-connectivity)
   - [Global Configuration](#global-configuration)
-  - [Vrf Configuration](#vrf-configuration)
+  - [VRF Configuration](#vrf-configuration)
   - [Monitor Connectivity Device Configuration](#monitor-connectivity-device-configuration)
 - [Internal VLAN Allocation Policy](#internal-vlan-allocation-policy)
   - [Internal VLAN Allocation Policy Summary](#internal-vlan-allocation-policy-summary)
-  - [Internal VLAN Allocation Policy Configuration](#internal-vlan-allocation-policy-configuration)
+  - [Internal VLAN Allocation Policy Device Configuration](#internal-vlan-allocation-policy-device-configuration)
 - [VLANs](#vlans)
   - [VLANs Summary](#vlans-summary)
   - [VLANs Device Configuration](#vlans-device-configuration)
@@ -41,127 +43,127 @@
   - [IPv6 Routing](#ipv6-routing)
   - [Static Routes](#static-routes)
   - [Router BGP](#router-bgp)
+- [Queue Monitor](#queue-monitor)
+  - [Queue Monitor Streaming](#queue-monitor-streaming)
+  - [Queue Monitor Configuration](#queue-monitor-configuration)
 - [Multicast](#multicast)
   - [IP IGMP Snooping](#ip-igmp-snooping)
   - [Router Multicast](#router-multicast)
   - [PIM Sparse Mode](#pim-sparse-mode)
 - [Filters](#filters)
-- [ACL](#acl)
+  - [Prefix-lists](#prefix-lists)
+  - [Route-maps](#route-maps)
 - [VRF Instances](#vrf-instances)
   - [VRF Instances Summary](#vrf-instances-summary)
   - [VRF Instances Device Configuration](#vrf-instances-device-configuration)
-- [Quality Of Service](#quality-of-service)
 
-# Management
+## Management
 
-## Management Interfaces
+### Management Interfaces
 
-### Management Interfaces Summary
+#### Management Interfaces Summary
 
-#### IPv4
+##### IPv4
 
-| Management Interface | description | Type | VRF | IP Address | Gateway |
+| Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management1 | oob_management | oob | MGMT | 10.90.227.23/24 | 10.90.227.1 |
+| Management1 | oob_management_interface | oob | MGMT | 10.90.227.23/24 | 10.90.227.1 |
 
-#### IPv6
+##### IPv6
 
-| Management Interface | description | Type | VRF | IPv6 Address | IPv6 Gateway |
+| Management Interface | Description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
-| Management1 | oob_management | oob | MGMT | - | - |
+| Management1 | oob_management_interface | oob | MGMT | - | - |
 
-### Management Interfaces Device Configuration
+#### Management Interfaces Device Configuration
 
 ```eos
 !
 interface Management1
-   description oob_management
+   description oob_management_interface
    no shutdown
    vrf MGMT
    ip address 10.90.227.23/24
 ```
 
-## DNS Domain
+### DNS Domain
 
-### DNS domain: MnE.lab
+DNS domain: MnE.lab
 
-### DNS Domain Device Configuration
+#### DNS Domain Device Configuration
 
 ```eos
 dns domain MnE.lab
 !
 ```
 
-## Name Servers
+### IP Name Servers
 
-### Name Servers Summary
+#### IP Name Servers Summary
 
-| Name Server | Source VRF |
-| ----------- | ---------- |
-| 10.90.227.155 | MGMT |
+| Name Server | VRF | Priority |
+| ----------- | --- | -------- |
+| 10.90.227.155 | MGMT | - |
 
-### Name Servers Device Configuration
+#### IP Name Servers Device Configuration
 
 ```eos
 ip name-server vrf MGMT 10.90.227.155
 ```
 
-## NTP
+### NTP
 
-### NTP Summary
+#### NTP Summary
 
-#### NTP Servers
+##### NTP Servers
 
 | Server | VRF | Preferred | Burst | iBurst | Version | Min Poll | Max Poll | Local-interface | Key |
 | ------ | --- | --------- | ----- | ------ | ------- | -------- | -------- | --------------- | --- |
-| 172.22.22.50 | MGMT | - | - | True | - | - | - | - | - |
-| 198.55.111.50 | MGMT | - | - | True | - | - | - | - | - |
+| ntp.aristanetworks.com | MGMT | - | - | True | - | - | - | Ma1 | - |
 
-### NTP Device Configuration
+#### NTP Device Configuration
 
 ```eos
 !
-ntp server vrf MGMT 172.22.22.50 iburst
-ntp server vrf MGMT 198.55.111.50 iburst
+ntp server vrf MGMT ntp.aristanetworks.com iburst local-interface Ma1
 ```
 
-## PTP
-
-### PTP Summary
+### PTP
+#### PTP Summary
 
 | Clock ID | Source IP | Priority 1 | Priority 2 | TTL | Domain | Mode | Forward Unicast |
 | -------- | --------- | ---------- | ---------- | --- | ------ | ---- | --------------- |
 | 00:1C:73:0a:00:03 | - | 10 | 3 | - | 127 | boundary | - |
 
-### PTP Device Configuration
+#### PTP Device Configuration
 
 ```eos
 !
 ptp clock-identity 00:1C:73:0a:00:03
-ptp priority1 10
-ptp priority2 3
 ptp domain 127
 ptp mode boundary
+ptp priority1 10
+ptp priority2 3
 ptp monitor threshold offset-from-master 250
 ptp monitor threshold mean-path-delay 1500
 ptp monitor sequence-id
-ptp monitor threshold missing-message announce 3 sequence-ids
-ptp monitor threshold missing-message delay-resp 3 sequence-ids
-ptp monitor threshold missing-message follow-up 3 sequence-ids
 ptp monitor threshold missing-message sync 3 sequence-ids
+ptp monitor threshold missing-message follow-up 3 sequence-ids
+ptp monitor threshold missing-message delay-resp 3 sequence-ids
+ptp monitor threshold missing-message announce 3 sequence-ids
 ```
 
-## Management API GNMI
+### Management API gNMI
 
-### Management API GNMI Summary
+#### Management API gNMI Summary
 
-| Transport | SSL Profile | VRF | Notification Timestamp | ACL |
-| --------- | ----------- | --- | ---------------------- | --- |
-| grpc | - | MGMT | last-change-time | - |
+| Transport | SSL Profile | VRF | Notification Timestamp | ACL | Port |
+| --------- | ----------- | --- | ---------------------- | --- | ---- |
+| grpc | - | MGMT | last-change-time | - | 6030 |
 
 Provider eos-native is configured.
 
-### Management API gnmi configuration
+#### Management API gNMI Device Configuration
 
 ```eos
 !
@@ -171,36 +173,37 @@ management api gnmi
    provider eos-native
 ```
 
-## Management CVX Summary
+### Management CVX Summary
 
 | Shutdown | CVX Servers |
 | -------- | ----------- |
-| False | 10.90.224.188 |
+| False | 10.90.228.50 |
 
-### Management CVX configuration
+#### Management CVX Device Configuration
 
 ```eos
 !
 management cvx
    no shutdown
-   server host 10.90.224.188
+   server host 10.90.228.50
+   vrf MGMT
 ```
 
-## Management API HTTP
+### Management API HTTP
 
-### Management API HTTP Summary
+#### Management API HTTP Summary
 
 | HTTP | HTTPS | Default Services |
 | ---- | ----- | ---------------- |
 | False | True | - |
 
-### Management API VRF Access
+#### Management API VRF Access
 
 | VRF Name | IPv4 ACL | IPv6 ACL |
 | -------- | -------- | -------- |
 | MGMT | - | - |
 
-### Management API HTTP Configuration
+#### Management API HTTP Device Configuration
 
 ```eos
 !
@@ -212,9 +215,9 @@ management api http-commands
       no shutdown
 ```
 
-## Management API Models
+### Management API Models
 
-### Management API Models Summary
+#### Management API Models Summary
 
 | Provider | Path | Disabled |
 | -------- | ---- | ------- |
@@ -222,7 +225,7 @@ management api http-commands
 | smash | ptp | False |
 | smash | routing | False |
 
-### Management API Models Configuration
+#### Management API Models Device Configuration
 
 ```eos
 !
@@ -234,32 +237,32 @@ management api models
       path routing
 ```
 
-# Authentication
+## Authentication
 
-## Local Users
+### Local Users
 
-### Local Users Summary
+#### Local Users Summary
 
-| User | Privilege | Role | Disabled |
-| ---- | --------- | ---- | -------- |
-| admin | 15 | network-admin | False |
-| cvpadmin | 15 | network-admin | False |
-| dataminer | 1 | view-only | False |
+| User | Privilege | Role | Disabled | Shell |
+| ---- | --------- | ---- | -------- | ----- |
+| admin | 15 | network-admin | False | - |
+| cvpadmin | 15 | network-admin | False | - |
+| dataminer | 1 | view-only | False | - |
 
-### Local Users Device Configuration
+#### Local Users Device Configuration
 
 ```eos
 !
-username admin privilege 15 role network-admin secret sha512 $6$ttzoDdVO8Uz2SiBF$Ge.hQWy9wPGWyGc9.Q/mMyjycNO.9ylh40Vc.0iiqU/MtR7MKKIuOgbKkOeD3EpPMtN2SBForxog2ZCqv0kbu0
-username cvpadmin privilege 15 role network-admin secret sha512 $6$n7NC6yuQmsXgOMKP$UZu7iLcCZgydY8NMdGAz244RVKdWqEikN.9ByPifgwQ90xS3fT6.46j5WcfUxkmVYWhWSgbIpODxVw67VkbkQ0
-username dataminer privilege 1 role view-only secret sha512 $6$tDLfGUdh6qFbD7XV$YOgbgeXei40thdIzlH1/Nz38K2IBkBcA6hYe.ihQnyq3qC92qP/ezmFZcrdOSmbF7xo10VegijeznJrn9X9lc.
+username admin privilege 15 role network-admin secret sha512 <removed>
+username cvpadmin privilege 15 role network-admin secret sha512 <removed>
+username dataminer privilege 1 role view-only secret sha512 <removed>
 ```
 
-## Roles
+### Roles
 
-### Roles Summary
+#### Roles Summary
 
-#### Role view-only
+##### Role view-only
 
 | Sequence | Action | Mode | Command |
 | -------- | ------ | ---- | ------- |
@@ -270,7 +273,7 @@ username dataminer privilege 1 role view-only secret sha512 $6$tDLfGUdh6qFbD7XV$
 | 50 | permit | - | show .* |
 | 60 | permit | - | bash timeout 1 df -h |
 
-### Roles Device Configuration
+#### Roles Device Configuration
 
 ```eos
 !
@@ -283,9 +286,13 @@ role view-only
    60 permit command bash timeout 1 df -h
 ```
 
-## AAA Authorization
+### Enable Password
 
-### AAA Authorization Summary
+Enable password has been disabled
+
+### AAA Authorization
+
+#### AAA Authorization Summary
 
 | Type | User Stores |
 | ---- | ----------- |
@@ -293,13 +300,13 @@ role view-only
 
 Authorization for configuration commands is disabled.
 
-### AAA Authorization Privilege Levels Summary
+#### AAA Authorization Privilege Levels Summary
 
 | Privilege Level | User Stores |
 | --------------- | ----------- |
 | 0,15 | local |
 
-### AAA Authorization Device Configuration
+#### AAA Authorization Device Configuration
 
 ```eos
 aaa authorization exec default local
@@ -307,7 +314,7 @@ aaa authorization commands 0,15 default local
 !
 ```
 
-# Aliases
+## Aliases Device Configuration
 
 ```eos
 alias sln show lldp neighbors
@@ -340,51 +347,58 @@ alias sqml show queue-monitor length
 !
 ```
 
-# Monitoring
+## Monitoring
 
-## TerminAttr Daemon
+### TerminAttr Daemon
 
-### TerminAttr Daemon Summary
+#### TerminAttr Daemon Summary
 
 | CV Compression | CloudVision Servers | VRF | Authentication | Smash Excludes | Ingest Exclude | Bypass AAA |
 | -------------- | ------------------- | --- | -------------- | -------------- | -------------- | ---------- |
-| gzip | 10.90.227.147:9910 | MGMT | key, | ale,flexCounter,hardware,kni,pulse | /Sysdb/cell/1/agent,/Sysdb/cell/2/agent | True |
++
+| gzip | apiserver.arista.io:443 | MGMT | token-secure,/tmp/cv-onboarding-token | ale,flexCounter,hardware,kni,pulse,strata | /Sysdb/cell/1/agent,/Sysdb/cell/2/agent | True |
++
+| gzip | apiserver.cv-dev.corp.arista.io:443 | MGMT | token-secure,/tmp/cvdev-onboarding-token | ale,flexCounter,hardware,kni,pulse,strata | /Sysdb/cell/1/agent,/Sysdb/cell/2/agent | True |
++
+| gzip | apiserver.cv-staging.corp.arista.io:443 | MGMT | token-secure,/tmp/cvstage-onboarding-token | ale,flexCounter,hardware,kni,pulse,strata | /Sysdb/cell/1/agent,/Sysdb/cell/2/agent | True |
+| gzip | 10.244.132.193:9910 | MGMT | token,/tmp/devtoken | ale,flexCounter,hardware,kni,pulse,strata | /Sysdb/cell/1/agent,/Sysdb/cell/2/agent | True |
+| gzip | 10.90.227.161:9910 | MGMT | token,/tmp/token | ale,flexCounter,hardware,kni,pulse,strata | /Sysdb/cell/1/agent,/Sysdb/cell/2/agent | True |
 
-### TerminAttr Daemon Device Configuration
+#### TerminAttr Daemon Device Configuration
 
 ```eos
 !
 daemon TerminAttr
-   exec /usr/bin/TerminAttr -cvaddr=10.90.227.147:9910 -cvauth=key, -cvvrf=MGMT -disableaaa -smashexcludes=ale,flexCounter,hardware,kni,pulse -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs
+   exec /usr/bin/TerminAttr -cvopt cvaas.addr=apiserver.arista.io:443 -cvopt cvaas.auth=token-secure,/tmp/cv-onboarding-token -cvopt cvaas.vrf=MGMT -cvopt cvaasdev.addr=apiserver.cv-dev.corp.arista.io:443 -cvopt cvaasdev.auth=token-secure,/tmp/cvdev-onboarding-token -cvopt cvaasdev.vrf=MGMT -cvopt cvaasstage.addr=apiserver.cv-staging.corp.arista.io:443 -cvopt cvaasstage.auth=token-secure,/tmp/cvstage-onboarding-token -cvopt cvaasstage.vrf=MGMT -cvopt dev.addr=10.244.132.193:9910 -cvopt dev.auth=token,/tmp/devtoken -cvopt dev.vrf=MGMT -cvopt lab.addr=10.90.227.161:9910 -cvopt lab.auth=token,/tmp/token -cvopt lab.vrf=MGMT -disableaaa -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs
    no shutdown
 ```
 
-## SNMP
+### SNMP
 
-### SNMP Configuration Summary
+#### SNMP Configuration Summary
 
 | Contact | Location | SNMP Traps | State |
 | ------- | -------- | ---------- | ----- |
 | - | - | All | Disabled |
 
-### SNMP Communities
+#### SNMP Communities
 
 | Community | Access | Access List IPv4 | Access List IPv6 | View |
 | --------- | ------ | ---------------- | ---------------- | ---- |
-| ro | ro | - | - | - |
-| rw | rw | - | - | - |
+| <removed> | ro | - | - | - |
+| <removed> | rw | - | - | - |
 
-### SNMP Device Configuration
+#### SNMP Device Configuration
 
 ```eos
 !
-snmp-server community ro ro
-snmp-server community rw rw
+snmp-server community <removed> ro
+snmp-server community <removed> rw
 ```
 
-## SFlow
+### SFlow
 
-### SFlow Summary
+#### SFlow Summary
 
 | VRF | SFlow Source | SFlow Destination | Port |
 | --- | ------------ | ----------------- | ---- |
@@ -393,7 +407,7 @@ snmp-server community rw rw
 
 sFlow is enabled.
 
-### SFlow Device Configuration
+#### SFlow Device Configuration
 
 ```eos
 !
@@ -402,50 +416,46 @@ sflow source-interface loopback0
 sflow run
 ```
 
-# Monitor Connectivity
+## Monitor Connectivity
 
-## Global Configuration
+### Global Configuration
 
-### Probing Configuration
+#### Probing Configuration
 
-| Enabled | Interval | Default Interface Set |
-| ------- | -------- | --------------------- |
-| True | - | - |
-
-### Host Parameters
-
-| Host Name | Description | IPv4 Address | Probing Interface Set | URL |
-| --------- | ----------- | ------------ | --------------------- | --- |
-| GM1 | GM1 | 172.24.121.65 | - | - |
-
-## Vrf Configuration
-
-| Name | Description | Default Interface Set |
-| ---- | ----------- | --------------------- |
-| MGMT | - | - |
-
-### Vrf MGMT Configuration
+| Enabled | Interval | Default Interface Set | Address Only |
+| ------- | -------- | --------------------- | ------------ |
+| True | - | - | True |
 
 #### Host Parameters
 
-| Host Name | Description | IPv4 Address | Probing Interface Set | URL |
-| --------- | ----------- | ------------ | --------------------- | --- |
-| aws-us-east-1 | aws-us-east-1 | 52.216.227.10 | - | http://fredcloudtracereast1.s3-website-us-east-1.amazonaws.com |
-| aws-us-west-2 | aws-us-west-2 | 52.218.182.251 | - | http://fredwebsitebuckettest.s3-website-us-west-2.amazonaws.com |
-| azure-eastus | aws-us-west-2 | 52.216.227.10 | - | http://fredcloudtracereast1.s3-website-us-east-1.amazonaws.com |
-| Google | Google | 8.8.8.8 | - | - |
+| Host Name | Description | IPv4 Address | Probing Interface Set | Address Only | URL |
+| --------- | ----------- | ------------ | --------------------- | ------------ | --- |
+| GM1 | GM1 | 172.24.121.65 | - | True | - |
 
-## Monitor Connectivity Device Configuration
+### VRF Configuration
+
+| Name | Description | Default Interface Set | Address Only |
+| ---- | ----------- | --------------------- | ------------ |
+| MGMT | - | - | True |
+
+#### Vrf MGMT Configuration
+
+##### Host Parameters
+
+| Host Name | Description | IPv4 Address | Probing Interface Set | Address Only | URL |
+| --------- | ----------- | ------------ | --------------------- | ------------ | --- |
+| aws-us-east-1 | aws-us-east-1 | 52.216.227.10 | - | True | http://fredcloudtracereast1.s3-website-us-east-1.amazonaws.com |
+| aws-us-west-2 | aws-us-west-2 | 52.218.182.251 | - | True | http://fredwebsitebuckettest.s3-website-us-west-2.amazonaws.com |
+| azure-eastus | aws-us-west-2 | 52.216.227.10 | - | True | http://fredcloudtracereast1.s3-website-us-east-1.amazonaws.com |
+| DNS | DNS | 10.90.227.155 | - | True | - |
+| Google | Google | 8.8.8.8 | - | True | - |
+| OOB-GW | OOB GW | 10.90.227.1 | - | True | - |
+
+### Monitor Connectivity Device Configuration
 
 ```eos
 !
 monitor connectivity
-   no shutdown
-   !
-   host GM1
-      description
-      GM1
-      ip 172.24.121.65
    vrf MGMT
       !
       host aws-us-east-1
@@ -466,36 +476,52 @@ monitor connectivity
          ip 52.216.227.10
          url http://fredcloudtracereast1.s3-website-us-east-1.amazonaws.com
       !
+      host DNS
+         description
+         DNS
+         ip 10.90.227.155
+      !
       host Google
          description
          Google
          ip 8.8.8.8
+      !
+      host OOB-GW
+         description
+         OOB GW
+         ip 10.90.227.1
+   no shutdown
+   !
+   host GM1
+      description
+      GM1
+      ip 172.24.121.65
 ```
 
-# Internal VLAN Allocation Policy
+## Internal VLAN Allocation Policy
 
-## Internal VLAN Allocation Policy Summary
+### Internal VLAN Allocation Policy Summary
 
 | Policy Allocation | Range Beginning | Range Ending |
 | ------------------| --------------- | ------------ |
 | ascending | 1006 | 1199 |
 
-## Internal VLAN Allocation Policy Configuration
+### Internal VLAN Allocation Policy Device Configuration
 
 ```eos
 !
 vlan internal order ascending range 1006 1199
 ```
 
-# VLANs
+## VLANs
 
-## VLANs Summary
+### VLANs Summary
 
 | VLAN ID | Name | Trunk Groups |
 | ------- | ---- | ------------ |
 | 2223 | vlan_PTP_2 | - |
 
-## VLANs Device Configuration
+### VLANs Device Configuration
 
 ```eos
 !
@@ -503,256 +529,136 @@ vlan 2223
    name vlan_PTP_2
 ```
 
-# Interfaces
+## Interfaces
 
-## Ethernet Interfaces
+### Ethernet Interfaces
 
-### Ethernet Interfaces Summary
+#### Ethernet Interfaces Summary
 
-#### L2
+##### L2
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet48 |  Meinberg Interface(cu-cu) | access | 2222 | - | - | - |
-| Ethernet53 |  Meinberg SFP-1G-T | access | 2222 | - | - | - |
-| Ethernet54 |  Meinberg 1G Optical | access | 2222 | - | - | - |
 
 *Inherited from Port-Channel Interface
 
-#### IPv4
+##### IPv4
 
-| Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
-| --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet51 | P2P_LINK_TO_MEDIA-SPINE-1_Ethernet28/1 | routed | - | 192.168.100.65/31 | default | 9000 | False | - | - |
-| Ethernet52 | P2P_LINK_TO_MEDIA-SPINE-2_Ethernet28/1 | routed | - | 192.168.100.67/31 | default | 9000 | False | - | - |
+| Interface | Description | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
+| --------- | ----------- | ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
+| Ethernet51 | P2P_media-spine-1_Ethernet28/1 | - | 192.168.100.65/31 | default | 9214 | False | - | - |
+| Ethernet52 | P2P_media-spine-2_Ethernet28/1 | - | 192.168.100.67/31 | default | 9214 | False | - | - |
 
-### Ethernet Interfaces Device Configuration
+#### Ethernet Interfaces Device Configuration
 
 ```eos
 !
 interface Ethernet1
-   description P2P_LINK_TO_media-PTP-1_Ethernet1
+   description P2P_media-PTP-1_Ethernet1
    no shutdown
-   mtu 9000
+   mtu 9214
    no switchport
    ptp enable
-   ptp sync-message interval -3
    ptp announce interval 0
-   ptp transport ipv4
    ptp announce timeout 3
    ptp delay-req interval -3
+   ptp sync-message interval -3
+   ptp transport ipv4
 !
 interface Ethernet2
-   description P2P_LINK_TO_media-PTP-1_Ethernet2
+   description P2P_media-PTP-1_Ethernet2
    no shutdown
-   mtu 9000
+   mtu 9214
    no switchport
    ptp enable
-   ptp sync-message interval -3
    ptp announce interval 0
-   ptp transport ipv4
    ptp announce timeout 3
    ptp delay-req interval -3
-!
-interface Ethernet11
-   description mcs senders/receivers
-   no shutdown
-   speed forced 1000full
-   no switchport
-!
-interface Ethernet12
-   description mcs senders/receivers
-   no shutdown
-   speed forced 1000full
-   no switchport
-!
-interface Ethernet13
-   description mcs senders/receivers
-   no shutdown
-   speed forced 1000full
-   no switchport
-!
-interface Ethernet14
-   description mcs senders/receivers
-   no shutdown
-   speed forced 1000full
-   no switchport
-!
-interface Ethernet15
-   description mcs senders/receivers
-   no shutdown
-   speed forced 1000full
-   no switchport
-!
-interface Ethernet16
-   description mcs senders/receivers
-   no shutdown
-   speed forced 1000full
-   no switchport
-!
-interface Ethernet17
-   description mcs senders/receivers
-   no shutdown
-   speed forced 1000full
-   no switchport
-!
-interface Ethernet18
-   description mcs senders/receivers
-   no shutdown
-   speed forced 1000full
-   no switchport
-!
-interface Ethernet19
-   description mcs senders/receivers
-   no shutdown
-   speed forced 1000full
-   no switchport
-!
-interface Ethernet20
-   description mcs senders/receivers
-   no shutdown
-   speed forced 1000full
-   no switchport
-!
-interface Ethernet45
-   description Evertz 5700MSC-IP Eth2
-   no shutdown
-   speed forced 1000full
-   no switchport
-   ptp enable
    ptp sync-message interval -3
-   ptp announce interval 0
    ptp transport ipv4
-   ptp announce timeout 3
-   ptp delay-req interval -3
-   ptp role master
-!
-interface Ethernet48
-   description Meinberg Interface(cu-cu)
-   no shutdown
-   speed forced 1000full
-   switchport access vlan 2222
-   switchport mode access
-   switchport
-   ptp enable
-   ptp sync-message interval -3
-   ptp announce interval 0
-   ptp transport ipv4
-   ptp announce timeout 3
-   ptp delay-req interval -3
-   ptp role master
 !
 interface Ethernet51
-   description P2P_LINK_TO_MEDIA-SPINE-1_Ethernet28/1
+   description P2P_media-spine-1_Ethernet28/1
    no shutdown
-   mtu 9000
+   mtu 9214
    no switchport
    ip address 192.168.100.65/31
    pim ipv4 sparse-mode
    ptp enable
-   ptp sync-message interval -3
    ptp announce interval 0
-   ptp transport ipv4
    ptp announce timeout 3
    ptp delay-req interval -3
+   ptp sync-message interval -3
+   ptp transport ipv4
 !
 interface Ethernet52
-   description P2P_LINK_TO_MEDIA-SPINE-2_Ethernet28/1
+   description P2P_media-spine-2_Ethernet28/1
    no shutdown
-   mtu 9000
+   mtu 9214
    no switchport
    ip address 192.168.100.67/31
    pim ipv4 sparse-mode
    ptp enable
-   ptp sync-message interval -3
    ptp announce interval 0
-   ptp transport ipv4
    ptp announce timeout 3
    ptp delay-req interval -3
-!
-interface Ethernet53
-   description Meinberg SFP-1G-T
-   no shutdown
-   speed forced 1000full
-   switchport access vlan 2222
-   switchport mode access
-   switchport
-   ptp enable
    ptp sync-message interval -3
-   ptp announce interval 0
    ptp transport ipv4
-   ptp announce timeout 3
-   ptp delay-req interval -3
-   ptp role master
-!
-interface Ethernet54
-   description Meinberg 1G Optical
-   no shutdown
-   speed forced 1000full
-   switchport access vlan 2222
-   switchport mode access
-   switchport
-   ptp enable
-   ptp sync-message interval -3
-   ptp announce interval 0
-   ptp transport ipv4
-   ptp announce timeout 3
-   ptp delay-req interval -3
-   ptp role master
 ```
 
-## Loopback Interfaces
+### Loopback Interfaces
 
-### Loopback Interfaces Summary
+#### Loopback Interfaces Summary
 
-#### IPv4
+##### IPv4
 
 | Interface | Description | VRF | IP Address |
 | --------- | ----------- | --- | ---------- |
-| Loopback0 | Router_ID | default | 172.24.0.23/32 |
+| Loopback0 | ROUTER_ID | default | 172.24.0.23/32 |
 
-#### IPv6
+##### IPv6
 
 | Interface | Description | VRF | IPv6 Address |
 | --------- | ----------- | --- | ------------ |
-| Loopback0 | Router_ID | default | - |
+| Loopback0 | ROUTER_ID | default | - |
 
-
-### Loopback Interfaces Device Configuration
+#### Loopback Interfaces Device Configuration
 
 ```eos
 !
 interface Loopback0
-   description Router_ID
+   description ROUTER_ID
    no shutdown
    ip address 172.24.0.23/32
 ```
 
-## VLAN Interfaces
+### VLAN Interfaces
 
-### VLAN Interfaces Summary
+#### VLAN Interfaces Summary
 
 | Interface | Description | VRF |  MTU | Shutdown |
 | --------- | ----------- | --- | ---- | -------- |
-| vlan 2223 | - | default | - | - |
+| vlan2223 | vlan_PTP_2 | default | - | - |
 
-#### IPv4
+##### IPv4
 
-| Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | VRRP | ACL In | ACL Out |
-| --------- | --- | ---------- | ------------------ | ------------------------- | ---- | ------ | ------- |
-| vlan 2223 |  default  |  172.24.123.65/30  |  -  |  -  |  -  |  -  |  -  |
+| Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | ACL In | ACL Out |
+| --------- | --- | ---------- | ------------------ | ------------------------- | ------ | ------- |
+| vlan2223 |  default  |  172.24.123.65/30  |  -  |  -  |  -  |  -  |
 
-### VLAN Interfaces Device Configuration
+#### VLAN Interfaces Device Configuration
 
 ```eos
 !
-interface vlan 2223
+interface vlan2223
+   description vlan_PTP_2
    no autostate
    ip address 172.24.123.65/30
 ```
 
-# Routing
-## Service Routing Protocols Model
+## Routing
+
+### Service Routing Protocols Model
 
 Multi agent routing protocol model enabled
 
@@ -761,96 +667,106 @@ Multi agent routing protocol model enabled
 service routing protocols model multi-agent
 ```
 
-## Virtual Router MAC Address
+### Virtual Router MAC Address
 
-### Virtual Router MAC Address Summary
+#### Virtual Router MAC Address Summary
 
-#### Virtual Router MAC Address: 00:1c:73:00:dc:01
+Virtual Router MAC Address: 00:1c:73:00:dc:01
 
-### Virtual Router MAC Address Configuration
+#### Virtual Router MAC Address Device Configuration
 
 ```eos
 !
 ip virtual-router mac-address 00:1c:73:00:dc:01
 ```
 
-## IP Routing
+### IP Routing
 
-### IP Routing Summary
+#### IP Routing Summary
 
 | VRF | Routing Enabled |
 | --- | --------------- |
 | default | True |
-| MGMT | false |
+| MGMT | False |
 
-### IP Routing Device Configuration
+#### IP Routing Device Configuration
 
 ```eos
 !
 ip routing
 no ip routing vrf MGMT
 ```
-## IPv6 Routing
 
-### IPv6 Routing Summary
+### IPv6 Routing
+
+#### IPv6 Routing Summary
 
 | VRF | Routing Enabled |
 | --- | --------------- |
 | default | False |
 | MGMT | false |
 
-## Static Routes
+### Static Routes
 
-### Static Routes Summary
+#### Static Routes Summary
 
-| VRF | Destination Prefix | Next Hop IP             | Exit interface      | Administrative Distance       | Tag               | Route Name                    | Metric         |
-| --- | ------------------ | ----------------------- | ------------------- | ----------------------------- | ----------------- | ----------------------------- | -------------- |
+| VRF | Destination Prefix | Next Hop IP | Exit interface | Administrative Distance | Tag | Route Name | Metric |
+| --- | ------------------ | ----------- | -------------- | ----------------------- | --- | ---------- | ------ |
 | MGMT | 0.0.0.0/0 | 10.90.227.1 | - | 1 | - | - | - |
 
-### Static Routes Device Configuration
+#### Static Routes Device Configuration
 
 ```eos
 !
 ip route vrf MGMT 0.0.0.0/0 10.90.227.1
 ```
 
-## Router BGP
+### Router BGP
 
-### Router BGP Summary
+ASN Notation: asplain
+
+#### Router BGP Summary
 
 | BGP AS | Router ID |
 | ------ | --------- |
-| 65423|  172.24.0.23 |
+| 65423 | 172.24.0.23 |
 
 | BGP Tuning |
 | ---------- |
+| update wait-install |
+| no bgp default ipv4-unicast |
 | maximum-paths 4 ecmp 4 |
 
-### Router BGP Peer Groups
+#### Router BGP Peer Groups
 
-#### IPv4-UNDERLAY-PEERS
+##### IPv4-UNDERLAY-PEERS
 
 | Settings | Value |
 | -------- | ----- |
 | Address Family | ipv4 |
+| BFD | True |
 | Send community | all |
 | Maximum routes | 12000 |
 
-### BGP Neighbors
+#### BGP Neighbors
 
-| Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client |
-| -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- |
-| 192.168.100.64 | 65411 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - |
-| 192.168.100.66 | 65412 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - |
+| Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
+| -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
+| 192.168.100.64 | 65411 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - |
+| 192.168.100.66 | 65412 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - |
 
-### Router BGP Device Configuration
+#### Router BGP Device Configuration
 
 ```eos
 !
 router bgp 65423
    router-id 172.24.0.23
+   update wait-install
+   no bgp default ipv4-unicast
    maximum-paths 4 ecmp 4
    neighbor IPv4-UNDERLAY-PEERS peer group
+   neighbor IPv4-UNDERLAY-PEERS bfd
+   neighbor IPv4-UNDERLAY-PEERS password 7 <removed>
    neighbor IPv4-UNDERLAY-PEERS send-community
    neighbor IPv4-UNDERLAY-PEERS maximum-routes 12000
    neighbor 192.168.100.64 peer group IPv4-UNDERLAY-PEERS
@@ -859,34 +775,50 @@ router bgp 65423
    neighbor 192.168.100.66 peer group IPv4-UNDERLAY-PEERS
    neighbor 192.168.100.66 remote-as 65412
    neighbor 192.168.100.66 description media-spine-2_Ethernet28/1
-   redistribute connected
+   redistribute connected route-map RM-CONN-2-BGP
    !
    address-family ipv4
       neighbor IPv4-UNDERLAY-PEERS activate
 ```
 
-# Multicast
+## Queue Monitor
 
-## IP IGMP Snooping
+### Queue Monitor Streaming
 
-### IP IGMP Snooping Summary
+| Enabled | IP Access Group | IPv6 Access Group | Max Connections | VRF |
+| ------- | --------------- | ----------------- | --------------- | --- |
+| True | - | - | - | - |
+
+### Queue Monitor Configuration
+
+```eos
+!
+queue-monitor streaming
+   no shutdown
+```
+
+## Multicast
+
+### IP IGMP Snooping
+
+#### IP IGMP Snooping Summary
 
 | IGMP Snooping | Fast Leave | Interface Restart Query | Proxy | Restart Query Interval | Robustness Variable |
 | ------------- | ---------- | ----------------------- | ----- | ---------------------- | ------------------- |
 | Enabled | - | - | - | - | - |
 
-### IP IGMP Snooping Device Configuration
+#### IP IGMP Snooping Device Configuration
 
 ```eos
 ```
 
-## Router Multicast
+### Router Multicast
 
-### IP Router Multicast Summary
+#### IP Router Multicast Summary
 
 - Routing for IPv4 multicast is enabled.
 
-### Router Multicast Device Configuration
+#### Router Multicast Device Configuration
 
 ```eos
 !
@@ -895,12 +827,11 @@ router multicast
       routing
 ```
 
+### PIM Sparse Mode
 
-## PIM Sparse Mode
+#### Router PIM Sparse Mode
 
-### Router PIM Sparse Mode
-
-#### IP Sparse Mode Information
+##### IP Sparse Mode Information
 
 BFD enabled: False
 
@@ -910,39 +841,80 @@ BFD enabled: False
 | ------------------------ | ------------- | ------------ | -------- | -------- | -------- |
 | 172.24.0.10 | - | - | - | - | - |
 
-#### Router Multicast Device Configuration
+##### IP Anycast Information
+
+| IP Anycast Address | Other Rendezvous Point Address | Register Count |
+| ------------------ | ------------------------------ | -------------- |
+| 172.24.0.10 | 172.24.0.11 | - |
+| 172.24.0.10 | 172.24.0.12 | - |
+
+##### Router Multicast Device Configuration
 
 ```eos
 !
 router pim sparse-mode
    ipv4
       rp address 172.24.0.10
+      anycast-rp 172.24.0.10 172.24.0.11
+      anycast-rp 172.24.0.10 172.24.0.12
 ```
 
-### PIM Sparse Mode enabled interfaces
+#### PIM Sparse Mode Enabled Interfaces
 
-| Interface Name | VRF Name | IP Version | DR Priority | Local Interface |
-| -------------- | -------- | ---------- | ----------- | --------------- |
-| Ethernet51 | - | IPv4 | - | - |
-| Ethernet52 | - | IPv4 | - | - |
+| Interface Name | VRF Name | IP Version | Border Router | DR Priority | Local Interface |
+| -------------- | -------- | ---------- | ------------- | ----------- | --------------- |
+| Ethernet51 | - | IPv4 | - | - | - |
+| Ethernet52 | - | IPv4 | - | - | - |
 
-# Filters
+## Filters
 
-# ACL
+### Prefix-lists
 
-# VRF Instances
+#### Prefix-lists Summary
 
-## VRF Instances Summary
+##### PL-LOOPBACKS-EVPN-OVERLAY
+
+| Sequence | Action |
+| -------- | ------ |
+| 10 | permit 172.24.0.0/24 eq 32 |
+
+#### Prefix-lists Device Configuration
+
+```eos
+!
+ip prefix-list PL-LOOPBACKS-EVPN-OVERLAY
+   seq 10 permit 172.24.0.0/24 eq 32
+```
+
+### Route-maps
+
+#### Route-maps Summary
+
+##### RM-CONN-2-BGP
+
+| Sequence | Type | Match | Set | Sub-Route-Map | Continue |
+| -------- | ---- | ----- | --- | ------------- | -------- |
+| 10 | permit | ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY | - | - | - |
+
+#### Route-maps Device Configuration
+
+```eos
+!
+route-map RM-CONN-2-BGP permit 10
+   match ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY
+```
+
+## VRF Instances
+
+### VRF Instances Summary
 
 | VRF Name | IP Routing |
 | -------- | ---------- |
 | MGMT | disabled |
 
-## VRF Instances Device Configuration
+### VRF Instances Device Configuration
 
 ```eos
 !
 vrf instance MGMT
 ```
-
-# Quality Of Service

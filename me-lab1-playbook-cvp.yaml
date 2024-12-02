@@ -1,46 +1,21 @@
 ---
-- name: Collect EOS version
-  hosts: ME_LAB_FABRIC
+- name: Configuration deployment with CVP
+  hosts: cv_server01
+  connection: local
   gather_facts: false
   collections:
     - arista.avd
     - arista.cvp
   tasks:
-
-    - name: 'reset local folders for output'
-      tags: [build, generate]
+    - name: run CVP provisioning
       import_role:
-        name: arista.avd.build_output_folders
-
-    - name: generate intended variables
-      import_role:
-        name: arista.avd.eos_designs
-
-    - name: generate device intended config and documentation
-      import_role:
-        name: arista.avd.eos_cli_config_gen
-
-# - name: Configuration deployment with CVP
-#   hosts: cv_server01
-#   connection: local
-#   gather_facts: false
-#   #collections:
-#     #- arista.cvp
-#     #- arista.avd
-#   tasks:
-#     - name: run CVP provisioning
-#       ansible.builtin.import_role:
-#         name: arista.avd.eos_config_deploy_cvp
-#       vars:
-#         container_root: 'ME_LAB_FABRIC'
-#         configlets_prefix: 'DC1'
-#         device_filter: 'all'
-#         state: present
-#         cv_collection: v3
-#         device_search_key: serialNumber
-#         execute_tasks: false
-#         container_apply_mode: strict
-#         device_apply_mode: strict
+        name: arista.avd.eos_config_deploy_cvp
+      vars:
+        container_root: 'ME_LAB_FABRIC'
+        configlets_prefix: 'DC1'
+        device_filter: 'all'
+        state: present
+        cv_collection: v3
 
 
 

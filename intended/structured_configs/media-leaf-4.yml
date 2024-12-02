@@ -1,9 +1,9 @@
-hostname: media-leaf-2
+hostname: media-leaf-4
 is_deployed: true
-serial_number: JPE20302208
+serial_number: JPE19363421
 router_bgp:
-  as: '65427'
-  router_id: 172.24.0.27
+  as: '65431'
+  router_id: 172.24.0.31
   bgp:
     default:
       ipv4_unicast: false
@@ -28,26 +28,16 @@ router_bgp:
     - name: IPv4-UNDERLAY-PEERS
       activate: true
   neighbors:
-  - ip_address: 192.168.102.96
+  - ip_address: 192.168.102.160
     peer_group: IPv4-UNDERLAY-PEERS
     remote_as: '65411'
     peer: media-spine-1
-    description: media-spine-1_Ethernet3/1
-  - ip_address: 192.168.102.100
-    peer_group: IPv4-UNDERLAY-PEERS
-    remote_as: '65411'
-    peer: media-spine-1
-    description: media-spine-1_Ethernet4/1
-  - ip_address: 192.168.102.98
+    description: media-spine-1_Ethernet25/1
+  - ip_address: 192.168.102.162
     peer_group: IPv4-UNDERLAY-PEERS
     remote_as: '65412'
     peer: media-spine-2
-    description: media-spine-2_Ethernet3/1
-  - ip_address: 192.168.102.102
-    peer_group: IPv4-UNDERLAY-PEERS
-    remote_as: '65412'
-    peer: media-spine-2
-    description: media-spine-2_Ethernet4/1
+    description: media-spine-2_Ethernet25/1
 static_routes:
 - vrf: MGMT
   destination_address_prefix: 0.0.0.0/0
@@ -89,24 +79,18 @@ management_interfaces:
   description: oob_management_interface
   shutdown: false
   vrf: MGMT
-  ip_address: 10.90.227.27/24
+  ip_address: 10.90.227.31/24
   gateway: 10.90.227.1
   type: oob
-tcam_profile:
-  system: vxlan-routing
-platform:
-  sand:
-    lag:
-      hardware_only: true
 management_api_http:
   enable_vrfs:
   - name: MGMT
   enable_https: true
 ptp:
   mode: boundary
-  clock_identity: 00:1C:73:1e:00:07
+  clock_identity: 00:1C:73:1e:00:0b
   priority1: 30
-  priority2: 7
+  priority2: 11
   domain: 127
   monitor:
     enabled: true
@@ -121,11 +105,11 @@ ptp:
         follow_up: 3
         sync: 3
 ethernet_interfaces:
-- name: Ethernet49/1
+- name: Ethernet53/1
   peer: media-spine-1
-  peer_interface: Ethernet3/1
+  peer_interface: Ethernet25/1
   peer_type: media_spine
-  description: P2P_media-spine-1_Ethernet3/1
+  description: P2P_media-spine-1_Ethernet25/1
   shutdown: false
   mtu: 9214
   switchport:
@@ -139,43 +123,18 @@ ethernet_interfaces:
       interval: -3
     transport: ipv4
     enable: true
-  ip_address: 192.168.102.97/31
+  ip_address: 192.168.102.161/31
   pim:
     ipv4:
       sparse_mode: true
   multicast:
     ipv4:
       static: true
-- name: Ethernet50/1
-  peer: media-spine-1
-  peer_interface: Ethernet4/1
-  peer_type: media_spine
-  description: P2P_media-spine-1_Ethernet4/1
-  shutdown: false
-  mtu: 9214
-  switchport:
-    enabled: false
-  ptp:
-    announce:
-      interval: 0
-      timeout: 3
-    delay_req: -3
-    sync_message:
-      interval: -3
-    transport: ipv4
-    enable: true
-  ip_address: 192.168.102.101/31
-  pim:
-    ipv4:
-      sparse_mode: true
-  multicast:
-    ipv4:
-      static: true
-- name: Ethernet51/1
+- name: Ethernet54/1
   peer: media-spine-2
-  peer_interface: Ethernet3/1
+  peer_interface: Ethernet25/1
   peer_type: media_spine
-  description: P2P_media-spine-2_Ethernet3/1
+  description: P2P_media-spine-2_Ethernet25/1
   shutdown: false
   mtu: 9214
   switchport:
@@ -189,32 +148,7 @@ ethernet_interfaces:
       interval: -3
     transport: ipv4
     enable: true
-  ip_address: 192.168.102.99/31
-  pim:
-    ipv4:
-      sparse_mode: true
-  multicast:
-    ipv4:
-      static: true
-- name: Ethernet52/1
-  peer: media-spine-2
-  peer_interface: Ethernet4/1
-  peer_type: media_spine
-  description: P2P_media-spine-2_Ethernet4/1
-  shutdown: false
-  mtu: 9214
-  switchport:
-    enabled: false
-  ptp:
-    announce:
-      interval: 0
-      timeout: 3
-    delay_req: -3
-    sync_message:
-      interval: -3
-    transport: ipv4
-    enable: true
-  ip_address: 192.168.102.103/31
+  ip_address: 192.168.102.163/31
   pim:
     ipv4:
       sparse_mode: true
@@ -225,7 +159,7 @@ loopback_interfaces:
 - name: Loopback0
   description: ROUTER_ID
   shutdown: false
-  ip_address: 172.24.0.27/32
+  ip_address: 172.24.0.31/32
 prefix_lists:
 - name: PL-LOOPBACKS-EVPN-OVERLAY
   sequence_numbers:
@@ -242,6 +176,6 @@ ip_igmp_snooping:
   globally_enabled: true
 ip_virtual_router_mac_address: 00:1c:73:00:dc:01
 metadata:
-  platform: 7280R2
+  platform: 720XP
 mcs_client:
   shutdown: false

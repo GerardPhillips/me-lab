@@ -9,24 +9,32 @@ ME_LAB_FABRIC:
               hosts:
                 media-PTP-1:
                   ansible_host: 10.90.227.21
+                  serial_number: JPE20284615
                 media-PTP-2:
-                  ansible_host: 10.90.227.23       
+                  ansible_host: 10.90.227.23 
+                  serial_number: JPE20284734      
             MEDIA_SPINES:
               hosts:
                 media-spine-1:
                   ansible_host: 10.90.227.11
+                  serial_number: JPE20244151
                 media-spine-2:
                   ansible_host: 10.90.227.12
+                  serial_number: JPE21090526
             MEDIA_LEAFS:
               hosts:
                 media-leaf-1:
                   ansible_host: 10.90.227.25
+                  serial_number: JPE20302333
                 media-leaf-2:
                   ansible_host: 10.90.227.27
+                  serial_number: JPE20302208
                 media-leaf-3:
                   ansible_host: 10.90.227.29
-                campus-leaf-4:
+                  serial_number: JPE20282733
+                media-leaf-4:
                   ansible_host: 10.90.227.31
+                  serial_number: JPE19363421
         #DC1_TENANTS_NETWORK:
           #children:
             #hosts:
@@ -36,8 +44,10 @@ ME_LAB_FABRIC:
   # Only needed for eAPI or SSH
   # not needed for CVP
   vars:
+    ansible_python_interpreter: $(which python3)
     ansible_network_os: eos
-    ansible_connection: network_cli
+    #ansible_connection: network_cli
+    ansible_connection: httpapi
     ansible_httpapi_user: admin
     ansible_httpapi_password: arista123!
     ansible_httpapi_use_ssl: True
@@ -51,13 +61,12 @@ ME_LAB_FABRIC:
 cloudvision:
   hosts:
     cv_server01:
-      ansible_httpapi_host: 10.90.227.147
-      ansible_host: 10.90.227.147
-      ansible_user: cvpadmin
-      ansible_password: arista123!
+      ansible_host: www.cv-prod-euwest-2.arista.io
+      ansible_user: cvaas
+      ansible_password: "{{ lookup('file', 'cvaas.token')}}" 
       ansible_connection: httpapi
       ansible_httpapi_use_ssl: True
-      ansible_httpapi_validate_certs: flase
+      ansible_httpapi_validate_certs: False
       ansible_network_os: eos
       ansible_httpapi_port: 443
       # Configuration to get Virtual Env information

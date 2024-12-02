@@ -345,14 +345,14 @@ alias sqml show queue-monitor length
 
 | CV Compression | CloudVision Servers | VRF | Authentication | Smash Excludes | Ingest Exclude | Bypass AAA |
 | -------------- | ------------------- | --- | -------------- | -------------- | -------------- | ---------- |
-| gzip | 10.90.227.147:9910 | MGMT | key, | ale,flexCounter,hardware,kni,pulse | /Sysdb/cell/1/agent,/Sysdb/cell/2/agent | True |
+| gzip | 10.90.227.161:9910,cvaas.addr=apiserver.arista.io:443:443 | MGMT | token-secure,/tmp/cv-onboarding-token | ale,flexCounter,hardware,kni,pulse | /Sysdb/cell/1/agent,/Sysdb/cell/2/agent | True |
 
 ### TerminAttr Daemon Device Configuration
 
 ```eos
 !
 daemon TerminAttr
-   exec /usr/bin/TerminAttr -cvaddr=10.90.227.147:9910 -cvauth=key, -cvvrf=MGMT -disableaaa -smashexcludes=ale,flexCounter,hardware,kni,pulse -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs
+   exec /usr/bin/TerminAttr -cvaddr=10.90.227.161:9910,cvaas.addr=apiserver.arista.io:443:443 -cvauth=token-secure,/tmp/cv-onboarding-token -cvvrf=MGMT -disableaaa -smashexcludes=ale,flexCounter,hardware,kni,pulse -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs
    no shutdown
 ```
 

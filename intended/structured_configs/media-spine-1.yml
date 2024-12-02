@@ -1,3 +1,6 @@
+hostname: media-spine-1
+is_deployed: true
+serial_number: JPE20244151
 router_bgp:
   as: '65411'
   router_id: 172.24.0.11
@@ -6,55 +9,75 @@ router_bgp:
   - distance bgp 20 200 200
   - graceful-restart restart-time 300
   - graceful-restart
-  - maximum-paths 4 ecmp 4
+  bgp:
+    default:
+      ipv4_unicast: false
+  maximum_paths:
+    paths: 4
+    ecmp: 4
+  redistribute:
+    connected:
+      enabled: true
+      route_map: RM-CONN-2-BGP
+  updates:
+    wait_install: true
   peer_groups:
-    IPv4-UNDERLAY-PEERS:
-      type: ipv4
-      maximum_routes: 12000
-      send_community: all
+  - name: IPv4-UNDERLAY-PEERS
+    type: ipv4
+    password: 9EcjYv60iv6MU0UKvxnA3Q==
+    bfd: true
+    maximum_routes: 12000
+    send_community: all
   address_family_ipv4:
     peer_groups:
-      IPv4-UNDERLAY-PEERS:
-        activate: true
-  redistribute_routes:
-    connected: {}
+    - name: IPv4-UNDERLAY-PEERS
+      activate: true
   neighbors:
-    192.168.102.65:
-      peer_group: IPv4-UNDERLAY-PEERS
-      remote_as: '65425'
-      description: media-leaf-1_Ethernet49/1
-    192.168.102.69:
-      peer_group: IPv4-UNDERLAY-PEERS
-      remote_as: '65425'
-      description: media-leaf-1_Ethernet50/1
-    192.168.102.97:
-      peer_group: IPv4-UNDERLAY-PEERS
-      remote_as: '65427'
-      description: media-leaf-2_Ethernet49/1
-    192.168.102.101:
-      peer_group: IPv4-UNDERLAY-PEERS
-      remote_as: '65427'
-      description: media-leaf-2_Ethernet50/1
-    192.168.102.129:
-      peer_group: IPv4-UNDERLAY-PEERS
-      remote_as: '65429'
-      description: media-leaf-3_Ethernet49/1
-    192.168.102.133:
-      peer_group: IPv4-UNDERLAY-PEERS
-      remote_as: '65429'
-      description: media-leaf-3_Ethernet50/1
-    192.168.102.161:
-      peer_group: IPv4-UNDERLAY-PEERS
-      remote_as: '65431'
-      description: campus-leaf-4_Ethernet53/1
-    192.168.100.1:
-      peer_group: IPv4-UNDERLAY-PEERS
-      remote_as: '65421'
-      description: media-PTP-1_Ethernet51
-    192.168.100.65:
-      peer_group: IPv4-UNDERLAY-PEERS
-      remote_as: '65423'
-      description: media-PTP-2_Ethernet51
+  - ip_address: 192.168.102.65
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65425'
+    peer: media-leaf-1
+    description: media-leaf-1_Ethernet49/1
+  - ip_address: 192.168.102.69
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65425'
+    peer: media-leaf-1
+    description: media-leaf-1_Ethernet50/1
+  - ip_address: 192.168.102.97
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65427'
+    peer: media-leaf-2
+    description: media-leaf-2_Ethernet49/1
+  - ip_address: 192.168.102.101
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65427'
+    peer: media-leaf-2
+    description: media-leaf-2_Ethernet50/1
+  - ip_address: 192.168.102.129
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65429'
+    peer: media-leaf-3
+    description: media-leaf-3_Ethernet49/1
+  - ip_address: 192.168.102.133
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65429'
+    peer: media-leaf-3
+    description: media-leaf-3_Ethernet50/1
+  - ip_address: 192.168.102.161
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65431'
+    peer: media-leaf-4
+    description: media-leaf-4_Ethernet53/1
+  - ip_address: 192.168.100.1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65421'
+    peer: media-PTP-1
+    description: media-PTP-1_Ethernet51
+  - ip_address: 192.168.100.65
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65423'
+    peer: media-PTP-2
+    description: media-PTP-2_Ethernet51
 static_routes:
 - vrf: MGMT
   destination_address_prefix: 0.0.0.0/0
@@ -64,48 +87,46 @@ ip_routing: true
 router_multicast:
   ipv4:
     routing: true
-daemon_terminattr:
-  cvaddrs:
-  - 10.90.227.147:9910
-  cvauth:
-    method: key
-    key: ''
-  cvvrf: MGMT
-  smashexcludes: ale,flexCounter,hardware,kni,pulse
-  ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
-  disable_aaa: true
 vlan_internal_order:
   allocation: ascending
   range:
     beginning: 1006
     ending: 1199
+aaa_root:
+  disabled: true
+config_end: true
+enable_password:
+  disabled: true
+transceiver_qsfp_default_mode_4x10: true
 local_users:
-  admin:
-    privilege: 15
-    role: network-admin
-    sha512_password: $6$ttzoDdVO8Uz2SiBF$Ge.hQWy9wPGWyGc9.Q/mMyjycNO.9ylh40Vc.0iiqU/MtR7MKKIuOgbKkOeD3EpPMtN2SBForxog2ZCqv0kbu0
-  cvpadmin:
-    privilege: 15
-    role: network-admin
-    sha512_password: $6$n7NC6yuQmsXgOMKP$UZu7iLcCZgydY8NMdGAz244RVKdWqEikN.9ByPifgwQ90xS3fT6.46j5WcfUxkmVYWhWSgbIpODxVw67VkbkQ0
-  dataminer:
-    privilege: 1
-    role: view-only
-    sha512_password: $6$tDLfGUdh6qFbD7XV$YOgbgeXei40thdIzlH1/Nz38K2IBkBcA6hYe.ihQnyq3qC92qP/ezmFZcrdOSmbF7xo10VegijeznJrn9X9lc.
+- name: admin
+  privilege: 15
+  role: network-admin
+  sha512_password: $6$ttzoDdVO8Uz2SiBF$Ge.hQWy9wPGWyGc9.Q/mMyjycNO.9ylh40Vc.0iiqU/MtR7MKKIuOgbKkOeD3EpPMtN2SBForxog2ZCqv0kbu0
+- name: cvpadmin
+  privilege: 15
+  role: network-admin
+  sha512_password: $6$n7NC6yuQmsXgOMKP$UZu7iLcCZgydY8NMdGAz244RVKdWqEikN.9ByPifgwQ90xS3fT6.46j5WcfUxkmVYWhWSgbIpODxVw67VkbkQ0
+- name: dataminer
+  privilege: 1
+  role: view-only
+  sha512_password: $6$tDLfGUdh6qFbD7XV$YOgbgeXei40thdIzlH1/Nz38K2IBkBcA6hYe.ihQnyq3qC92qP/ezmFZcrdOSmbF7xo10VegijeznJrn9X9lc.
 vrfs:
-  MGMT:
-    ip_routing: false
+- name: MGMT
+  ip_routing: false
 management_interfaces:
-  Management1:
-    description: oob_management
-    shutdown: false
-    vrf: MGMT
-    ip_address: 10.90.227.11/24
-    gateway: 10.90.227.1
-    type: oob
+- name: Management1
+  description: oob_management_interface
+  shutdown: false
+  vrf: MGMT
+  ip_address: 10.90.227.11/24
+  gateway: 10.90.227.1
+  type: oob
+tcam_profile:
+  system: vxlan-routing
 management_api_http:
   enable_vrfs:
-    MGMT: {}
+  - name: MGMT
   enable_https: true
 ptp:
   mode: boundary
@@ -126,463 +147,253 @@ ptp:
         follow_up: 3
         sync: 3
 ethernet_interfaces:
-  Ethernet1/1:
-    peer: media-leaf-1
-    peer_interface: Ethernet49/1
-    peer_type: media_leaf
-    description: P2P_LINK_TO_MEDIA-LEAF-1_Ethernet49/1
-    shutdown: false
-    mtu: 9000
-    type: routed
-    ptp:
-      announce:
-        interval: 0
-        timeout: 3
-      delay_req: -3
-      sync_message:
-        interval: -3
-      transport: ipv4
-      enable: true
-    ip_address: 192.168.102.64/31
-    pim:
-      ipv4:
-        sparse_mode: true
-    multicast:
-      ipv4:
-        static: true
-  Ethernet2/1:
-    peer: media-leaf-1
-    peer_interface: Ethernet50/1
-    peer_type: media_leaf
-    description: P2P_LINK_TO_MEDIA-LEAF-1_Ethernet50/1
-    shutdown: false
-    mtu: 9000
-    type: routed
-    ptp:
-      announce:
-        interval: 0
-        timeout: 3
-      delay_req: -3
-      sync_message:
-        interval: -3
-      transport: ipv4
-      enable: true
-    ip_address: 192.168.102.68/31
-    pim:
-      ipv4:
-        sparse_mode: true
-    multicast:
-      ipv4:
-        static: true
-  Ethernet3/1:
-    peer: media-leaf-2
-    peer_interface: Ethernet49/1
-    peer_type: media_leaf
-    description: P2P_LINK_TO_MEDIA-LEAF-2_Ethernet49/1
-    shutdown: false
-    mtu: 9000
-    type: routed
-    ptp:
-      announce:
-        interval: 0
-        timeout: 3
-      delay_req: -3
-      sync_message:
-        interval: -3
-      transport: ipv4
-      enable: true
-    ip_address: 192.168.102.96/31
-    pim:
-      ipv4:
-        sparse_mode: true
-    multicast:
-      ipv4:
-        static: true
-  Ethernet4/1:
-    peer: media-leaf-2
-    peer_interface: Ethernet50/1
-    peer_type: media_leaf
-    description: P2P_LINK_TO_MEDIA-LEAF-2_Ethernet50/1
-    shutdown: false
-    mtu: 9000
-    type: routed
-    ptp:
-      announce:
-        interval: 0
-        timeout: 3
-      delay_req: -3
-      sync_message:
-        interval: -3
-      transport: ipv4
-      enable: true
-    ip_address: 192.168.102.100/31
-    pim:
-      ipv4:
-        sparse_mode: true
-    multicast:
-      ipv4:
-        static: true
-  Ethernet17/1:
-    peer: media-leaf-3
-    peer_interface: Ethernet49/1
-    peer_type: media_leaf
-    description: P2P_LINK_TO_MEDIA-LEAF-3_Ethernet49/1
-    shutdown: false
-    mtu: 9000
-    type: routed
-    ptp:
-      announce:
-        interval: 0
-        timeout: 3
-      delay_req: -3
-      sync_message:
-        interval: -3
-      transport: ipv4
-      enable: true
-    ip_address: 192.168.102.128/31
-    pim:
-      ipv4:
-        sparse_mode: true
-    multicast:
-      ipv4:
-        static: true
-  Ethernet18/1:
-    peer: media-leaf-3
-    peer_interface: Ethernet50/1
-    peer_type: media_leaf
-    description: P2P_LINK_TO_MEDIA-LEAF-3_Ethernet50/1
-    shutdown: false
-    mtu: 9000
-    type: routed
-    ptp:
-      announce:
-        interval: 0
-        timeout: 3
-      delay_req: -3
-      sync_message:
-        interval: -3
-      transport: ipv4
-      enable: true
-    ip_address: 192.168.102.132/31
-    pim:
-      ipv4:
-        sparse_mode: true
-    multicast:
-      ipv4:
-        static: true
-  Ethernet25/1:
-    peer: campus-leaf-4
-    peer_interface: Ethernet53/1
-    peer_type: media_leaf
-    description: P2P_LINK_TO_CAMPUS-LEAF-4_Ethernet53/1
-    shutdown: false
-    mtu: 9000
-    type: routed
-    ptp:
-      announce:
-        interval: 0
-        timeout: 3
-      delay_req: -3
-      sync_message:
-        interval: -3
-      transport: ipv4
-      enable: true
-    ip_address: 192.168.102.160/31
-    pim:
-      ipv4:
-        sparse_mode: true
-    multicast:
-      ipv4:
-        static: true
-  Ethernet27/1:
-    peer: media-PTP-1
-    peer_interface: Ethernet51
-    peer_type: ptp_leaf
-    description: P2P_LINK_TO_MEDIA-PTP-1_Ethernet51
-    shutdown: false
-    mtu: 9000
-    type: routed
-    ptp:
-      announce:
-        interval: 0
-        timeout: 3
-      delay_req: -3
-      sync_message:
-        interval: -3
-      transport: ipv4
-      enable: true
-    ip_address: 192.168.100.0/31
-    pim:
-      ipv4:
-        sparse_mode: true
-  Ethernet28/1:
-    peer: media-PTP-2
-    peer_interface: Ethernet51
-    peer_type: ptp_leaf
-    description: P2P_LINK_TO_MEDIA-PTP-2_Ethernet51
-    shutdown: false
-    mtu: 9000
-    type: routed
-    ptp:
-      announce:
-        interval: 0
-        timeout: 3
-      delay_req: -3
-      sync_message:
-        interval: -3
-      transport: ipv4
-      enable: true
-    ip_address: 192.168.100.64/31
-    pim:
-      ipv4:
-        sparse_mode: true
-  Ethernet5/1:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 10000full
-    type: routed
-    shutdown: false
-  Ethernet6/1:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 10000full
-    type: routed
-    shutdown: false
-  Ethernet7/1:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 1000full
-    type: routed
-    shutdown: false
-  Ethernet8/1:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    type: routed
-    shutdown: false
-  Ethernet9/1:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    type: routed
-    shutdown: false
-  Ethernet10/1:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 10000full
-    type: routed
-    shutdown: false
-  Ethernet11/1:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 10000full
-    type: routed
-    shutdown: false
-  Ethernet12/1:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 10000full
-    type: routed
-    shutdown: false
-  Ethernet13/1:
-    peer: C100-2 P1
-    peer_type: network_port
-    description: C100-2 P1
-    speed: forced 40Gfull
-    type: routed
-    shutdown: false
-    ptp:
-      announce:
-        interval: 0
-        timeout: 3
-      delay_req: -3
-      sync_message:
-        interval: -3
-      transport: ipv4
-      enable: true
-      role: master
-    ip_address: 172.24.211.5/30
-    pim:
-      ipv4:
-        sparse_mode: true
-    multicast:
-      ipv4:
-        static: true
-  Ethernet14/1:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 10000full
-    type: routed
-    shutdown: false
-  Ethernet15/1:
-    peer: Telestream iQ Inspect - Eth2
-    peer_type: network_port
-    description: Telestream iQ Inspect - Eth2
-    speed: forced 100Gfull
-    type: routed
-    shutdown: false
-    ptp:
-      announce:
-        interval: 0
-        timeout: 3
-      delay_req: -3
-      sync_message:
-        interval: -3
-      transport: ipv4
-      enable: true
-      role: master
-    ip_address: 172.24.211.9/30
-    pim:
-      ipv4:
-        sparse_mode: true
-    multicast:
-      ipv4:
-        static: true
-  Ethernet16/1:
-    peer: smartSCOPE-AristaMaELAB,mcs sender/receiver
-    peer_type: network_port
-    description: smartSCOPE-AristaMaELAB,mcs sender/receiver
-    speed: forced 100Gfull
-    type: routed
-    shutdown: false
-    ptp:
-      announce:
-        interval: 0
-        timeout: 3
-      delay_req: -3
-      sync_message:
-        interval: -3
-      transport: ipv4
-      enable: true
-      role: master
-    ip_address: 172.24.211.1/30
-    pim:
-      ipv4:
-        sparse_mode: true
-    multicast:
-      ipv4:
-        static: true
-  Ethernet19/1:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 10000full
-    type: routed
-    shutdown: false
-  Ethernet20/1:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 10000full
-    type: routed
-    shutdown: false
-  Ethernet21/1:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 10000full
-    type: routed
-    shutdown: false
-  Ethernet22/1:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 10000full
-    type: routed
-    shutdown: false
-  Ethernet23/1:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 10000full
-    type: routed
-    shutdown: false
-  Ethernet24/1:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 10000full
-    type: routed
-    shutdown: false
-  Ethernet26/1:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 10000full
-    type: routed
-    shutdown: false
-  Ethernet27/2:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 25Gfull
-    type: routed
-    shutdown: false
-  Ethernet27/3:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 25Gfull
-    type: routed
-    shutdown: false
-  Ethernet27/4:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 25Gfull
-    type: routed
-    shutdown: false
-  Ethernet28/2:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 25Gfull
-    type: routed
-    shutdown: false
-  Ethernet28/3:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 25Gfull
-    type: routed
-    shutdown: false
-  Ethernet28/4:
-    peer: mcs senders/receivers
-    peer_type: network_port
-    description: mcs senders/receivers
-    speed: forced 25Gfull
-    type: routed
-    shutdown: false
+- name: Ethernet1/1
+  peer: media-leaf-1
+  peer_interface: Ethernet49/1
+  peer_type: media_leaf
+  description: P2P_media-leaf-1_Ethernet49/1
+  shutdown: false
+  mtu: 9214
+  switchport:
+    enabled: false
+  ptp:
+    announce:
+      interval: 0
+      timeout: 3
+    delay_req: -3
+    sync_message:
+      interval: -3
+    transport: ipv4
+    enable: true
+  ip_address: 192.168.102.64/31
+  pim:
+    ipv4:
+      sparse_mode: true
+  multicast:
+    ipv4:
+      static: true
+- name: Ethernet2/1
+  peer: media-leaf-1
+  peer_interface: Ethernet50/1
+  peer_type: media_leaf
+  description: P2P_media-leaf-1_Ethernet50/1
+  shutdown: false
+  mtu: 9214
+  switchport:
+    enabled: false
+  ptp:
+    announce:
+      interval: 0
+      timeout: 3
+    delay_req: -3
+    sync_message:
+      interval: -3
+    transport: ipv4
+    enable: true
+  ip_address: 192.168.102.68/31
+  pim:
+    ipv4:
+      sparse_mode: true
+  multicast:
+    ipv4:
+      static: true
+- name: Ethernet3/1
+  peer: media-leaf-2
+  peer_interface: Ethernet49/1
+  peer_type: media_leaf
+  description: P2P_media-leaf-2_Ethernet49/1
+  shutdown: false
+  mtu: 9214
+  switchport:
+    enabled: false
+  ptp:
+    announce:
+      interval: 0
+      timeout: 3
+    delay_req: -3
+    sync_message:
+      interval: -3
+    transport: ipv4
+    enable: true
+  ip_address: 192.168.102.96/31
+  pim:
+    ipv4:
+      sparse_mode: true
+  multicast:
+    ipv4:
+      static: true
+- name: Ethernet4/1
+  peer: media-leaf-2
+  peer_interface: Ethernet50/1
+  peer_type: media_leaf
+  description: P2P_media-leaf-2_Ethernet50/1
+  shutdown: false
+  mtu: 9214
+  switchport:
+    enabled: false
+  ptp:
+    announce:
+      interval: 0
+      timeout: 3
+    delay_req: -3
+    sync_message:
+      interval: -3
+    transport: ipv4
+    enable: true
+  ip_address: 192.168.102.100/31
+  pim:
+    ipv4:
+      sparse_mode: true
+  multicast:
+    ipv4:
+      static: true
+- name: Ethernet17/1
+  peer: media-leaf-3
+  peer_interface: Ethernet49/1
+  peer_type: media_leaf
+  description: P2P_media-leaf-3_Ethernet49/1
+  shutdown: false
+  mtu: 9214
+  switchport:
+    enabled: false
+  ptp:
+    announce:
+      interval: 0
+      timeout: 3
+    delay_req: -3
+    sync_message:
+      interval: -3
+    transport: ipv4
+    enable: true
+  ip_address: 192.168.102.128/31
+  pim:
+    ipv4:
+      sparse_mode: true
+  multicast:
+    ipv4:
+      static: true
+- name: Ethernet18/1
+  peer: media-leaf-3
+  peer_interface: Ethernet50/1
+  peer_type: media_leaf
+  description: P2P_media-leaf-3_Ethernet50/1
+  shutdown: false
+  mtu: 9214
+  switchport:
+    enabled: false
+  ptp:
+    announce:
+      interval: 0
+      timeout: 3
+    delay_req: -3
+    sync_message:
+      interval: -3
+    transport: ipv4
+    enable: true
+  ip_address: 192.168.102.132/31
+  pim:
+    ipv4:
+      sparse_mode: true
+  multicast:
+    ipv4:
+      static: true
+- name: Ethernet25/1
+  peer: media-leaf-4
+  peer_interface: Ethernet53/1
+  peer_type: media_leaf
+  description: P2P_media-leaf-4_Ethernet53/1
+  shutdown: false
+  mtu: 9214
+  switchport:
+    enabled: false
+  ptp:
+    announce:
+      interval: 0
+      timeout: 3
+    delay_req: -3
+    sync_message:
+      interval: -3
+    transport: ipv4
+    enable: true
+  ip_address: 192.168.102.160/31
+  pim:
+    ipv4:
+      sparse_mode: true
+  multicast:
+    ipv4:
+      static: true
+- name: Ethernet27/1
+  peer: media-PTP-1
+  peer_interface: Ethernet51
+  peer_type: ptp_leaf
+  description: P2P_media-PTP-1_Ethernet51
+  shutdown: false
+  mtu: 9214
+  switchport:
+    enabled: false
+  ptp:
+    announce:
+      interval: 0
+      timeout: 3
+    delay_req: -3
+    sync_message:
+      interval: -3
+    transport: ipv4
+    enable: true
+  ip_address: 192.168.100.0/31
+  pim:
+    ipv4:
+      sparse_mode: true
+- name: Ethernet28/1
+  peer: media-PTP-2
+  peer_interface: Ethernet51
+  peer_type: ptp_leaf
+  description: P2P_media-PTP-2_Ethernet51
+  shutdown: false
+  mtu: 9214
+  switchport:
+    enabled: false
+  ptp:
+    announce:
+      interval: 0
+      timeout: 3
+    delay_req: -3
+    sync_message:
+      interval: -3
+    transport: ipv4
+    enable: true
+  ip_address: 192.168.100.64/31
+  pim:
+    ipv4:
+      sparse_mode: true
 loopback_interfaces:
-  Loopback0:
-    description: Router_ID
-    shutdown: false
-    ip_address: 172.24.0.11/32
-  Loopback1:
-    ip_address: 172.24.0.10/32
-    description: Anycast RP
+- name: Loopback0
+  description: ROUTER_ID
+  shutdown: false
+  ip_address: 172.24.0.11/32
+- name: Loopback1
+  ip_address: 172.24.0.10/32
+  description: Anycast RP
+prefix_lists:
+- name: PL-LOOPBACKS-EVPN-OVERLAY
+  sequence_numbers:
+  - sequence: 10
+    action: permit 172.24.0.0/24 eq 32
+route_maps:
+- name: RM-CONN-2-BGP
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    match:
+    - ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY
 ip_igmp_snooping:
   globally_enabled: true
 ip_virtual_router_mac_address: 00:1c:73:00:dc:01
+metadata:
+  platform: 7280R3
 mcs_client:
   shutdown: false
-router_pim_sparse_mode:
-  ipv4:
-    rp_addresses:
-      172.24.0.10: null
-    anycast_rps:
-      172.24.0.10:
-        other_anycast_rp_addresses:
-          172.24.0.11: null
-          172.24.0.12: null
 hardware:
   speed_groups:
-    3:
-      serdes: 10g
+  - speed_group: '3'
+    serdes: 10g
