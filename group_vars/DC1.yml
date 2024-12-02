@@ -4,20 +4,35 @@ dc_name: DC1
 # local users
 local_users:
   # Username with no password configured
-  admin:
+  - name: "admin"
     privilege: 15
     role: network-admin
     sha512_password: $6$ttzoDdVO8Uz2SiBF$Ge.hQWy9wPGWyGc9.Q/mMyjycNO.9ylh40Vc.0iiqU/MtR7MKKIuOgbKkOeD3EpPMtN2SBForxog2ZCqv0kbu0
     #password: "arista123!"
-  cvpadmin:
+  - name: "cvpadmin"
     privilege: 15
     role: network-admin
     sha512_password: $6$n7NC6yuQmsXgOMKP$UZu7iLcCZgydY8NMdGAz244RVKdWqEikN.9ByPifgwQ90xS3fT6.46j5WcfUxkmVYWhWSgbIpODxVw67VkbkQ0
     #password: "arista123!"
-  dataminer:
+  - name: "dataminer"
     privilege: 1
     role: view-only
     sha512_password: $6$tDLfGUdh6qFbD7XV$YOgbgeXei40thdIzlH1/Nz38K2IBkBcA6hYe.ihQnyq3qC92qP/ezmFZcrdOSmbF7xo10VegijeznJrn9X9lc.
+
+# BGP peer groups passwords
+bgp_peer_groups:
+  evpn_overlay_peers:
+    name: EVPN-OVERLAY-PEERS
+    password: "{{ 'Sween3y!' | arista.avd.encrypt(passwd_type='bgp', key='pg_EVPN-OVERLAY-PEERS') }}"
+    bfd: true
+  ipv4_underlay_peers:
+    name: IPv4-UNDERLAY-PEERS
+    password: "{{ 'Sween3y!' | arista.avd.encrypt(passwd_type='bgp', key='pg_IPV4-UNDERLAY-PEERS') }}"
+    bfd: true
+  mlag_ipv4_underlay_peer:
+    name: MLAG-IPv4-UNDERLAY-PEERS
+    password: "{{ 'Sween3y!' | arista.avd.encrypt(passwd_type='bgp', key='mlag_ipv4_underlay_peer') }}"
+    bfd: true
 
 roles:
   - name: view-only
@@ -49,27 +64,26 @@ mgmt_interface: Management1
 mgmt_gateway: 10.90.227.1
 mgmt_destination_networks:
   - 0.0.0.0/0
+mgmt_interface_description: oob_management_interface
 
 management_cvx:
   shutdown: false
   server_hosts:
-    - 10.90.224.188
+    - 10.90.228.50
   vrf: MGMT
 
 snmp_server:
   communities:
-    ro:
-      access: ro
-    rw:
-      access: rw
+  - name: "ro"
+    access: ro
+  - name: "rw"
+    access: rw
 
 # dns servers.
 dns_domain: MnE.lab
-name_server:
-  source:
+ip_name_servers:
+  - ip_address: 10.90.227.155
     vrf: MGMT
-  nodes:
-    - 10.90.227.155
 
 aaa_authorization:
   exec:
@@ -82,18 +96,16 @@ aaa_authorization:
 # NTP Servers IP or DNS name, first NTP server will be preferred, and sourced from Management VRF
 ntp:
   servers:
-  - name: 172.22.22.50
+  - name: ntp.aristanetworks.com
     iburst: true
     vrf: MGMT
-  - name: 198.55.111.50
-    iburst: true
-    vrf: MGMT
+    local_interface: Ma1
 
 
 # sFLow
 sflow:
   destinations:
-    127.0.0.1:
+  - destination: "127.0.0.1"
   source_interface: loopback0
   run: true
 
@@ -106,13 +118,54 @@ service_unsupported_transceiver:
   license_name: FoxNetworksWoodlandsTesting
   license_key: e9ae09fb
 
-cvp_instance_ips:
-  - 10.90.227.147
-cvp_ingestauth_key: ''
-terminattr_ingestgrpcurl_port: 9910
-terminattr_smashexcludes: ale,flexCounter,hardware,kni,pulse
-terminattr_ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
-terminattr_disable_aaa: true
+#cvp_instance_ip: apiserver.arista.io
+#terminattr_smashexcludes: "ale,flexCounter,hardware,kni,pulse,strata"
+#terminattr_ingestexclude: "/Sysdb/cell/1/agent,/Sysdb/cell/2/agent"
+
+daemon_terminattr:
+  # Address of the gRPC server on CloudVision
+  # TCP 9910 is used on on-prem
+  # TCP 443 is used on CV as a Service
+  clusters: # For multiple cluster support
+    - name: cvaas
+      cvaddrs:
+        - apiserver.arista.io:443
+      cvauth:
+        method: token-secure
+        token_file: /tmp/cv-onboarding-token
+      cvvrf: MGMT
+    - name: cvaasdev
+      cvaddrs:
+        - apiserver.cv-dev.corp.arista.io:443
+      cvauth:
+        method: token-secure
+        token_file: /tmp/cvdev-onboarding-token
+      cvvrf: MGMT
+    - name: cvaasstage
+      cvaddrs:
+        - apiserver.cv-staging.corp.arista.io:443
+      cvauth:
+        method: token-secure
+        token_file: /tmp/cvstage-onboarding-token
+      cvvrf: MGMT
+    - name: dev
+      cvaddrs:
+        - 10.244.132.193:9910
+      cvauth:
+        method: token
+        token_file: /tmp/devtoken
+      cvvrf: MGMT
+    - name: lab
+      cvaddrs:
+        - 10.90.227.161:9910
+      cvauth:
+        method: token
+        token_file: /tmp/token
+      cvvrf: MGMT
+  disable_aaa: true
+  smashexcludes: ale,flexCounter,hardware,kni,pulse,strata
+  ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
+  taillogs:
 
 queue_monitor_length:
 
@@ -131,6 +184,12 @@ monitor_connectivity:
   vrfs:
     - name: MGMT
       hosts:
+        - name: OOB-GW
+          description: OOB GW
+          ip: 10.90.227.1
+        - name: DNS
+          description: DNS
+          ip: 10.90.227.155
         - name: Google
           description: Google
           ip: 8.8.8.8

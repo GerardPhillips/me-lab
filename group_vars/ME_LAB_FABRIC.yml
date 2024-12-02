@@ -1,9 +1,5 @@
 ---
 fabric_name: ME_LAB_FABRIC
 
-#cv_configlets:
-#  containers:
-#    ME_LAB_FABRIC:
-#      - GLOBAL-ALIASES
 
 

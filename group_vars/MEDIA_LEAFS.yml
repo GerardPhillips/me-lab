@@ -22,58 +22,66 @@ media_leaf:
       mcs_client:
         shutdown: false
   nodes:
-      media-leaf-1:
-        platform: 7280R2
-        id: 5
-        bgp_as: 65425
-        mgmt_ip: 10.90.227.25/24
-        # Interfaces configured on SPINES to connect to this leaf
-        uplink_switch_interfaces: [Ethernet1/1, Ethernet1/1, Ethernet2/1, Ethernet2/1]
-        structured_config:
-          vlans:
-            2252:
-                name: vlan_Leaf_1_1
-            2253: 
-                name: vlan_Leaf_1_2
-          vlan_interfaces:
-            vlan 2252:
-              ip_address: 172.24.225.17/28
-              no_autostate: true
-              pim:
-                ipv4:
-                  sparse_mode: true
-              multicast:
-                ipv4:
-                  static: true
-            vlan 2253:
-              ip_address: 172.24.225.33/28
-              no_autostate: true
-              pim:
-                ipv4:
-                  sparse_mode: true
-              multicast:
-                ipv4:
-                  static: true
-      media-leaf-2:
-        platform: 7280R2
-        id: 7
-        bgp_as: 65427
-        mgmt_ip: 10.90.227.27/24
-        # Interface configured on SPINES to connect to this leaf
-        uplink_switch_interfaces: [Ethernet3/1, Ethernet3/1, Ethernet4/1, Ethernet4/1]
-      media-leaf-3:
-        platform: 7050X2
-        id: 9
-        bgp_as: 65429
-        mgmt_ip: 10.90.227.29/24
-        # Interface configured on SPINES to connect to this leaf
-        uplink_switch_interfaces: [Ethernet17/1, Ethernet17/1, Ethernet18/1, Ethernet18/1]
-      campus-leaf-4:
-        platform: 720XP
-        id: 11
-        bgp_as: 65431
-        mgmt_ip: 10.90.227.31/24
-        # Interface configured on SPINES to connect to this leaf
-        uplink_switch_interfaces: [Ethernet25/1, Ethernet25/1]
-        uplink_interfaces: [Ethernet53/1, Ethernet54/1]
+    - name: media-leaf-1
+      platform: 7280R2
+      id: 5
+      bgp_as: 65425
+      mgmt_ip: 10.90.227.25/24
+      # Interfaces configured on SPINES to connect to this leaf
+      uplink_switch_interfaces: [Ethernet1/1, Ethernet1/1, Ethernet2/1, Ethernet2/1]
+      structured_config:
+        vlans:
+          - id: 2252
+            name: vlan_2252
+          - id: 2253
+            name: vlan_2253
+        
+        vlan_interfaces:
+          - name: vlan2252
+            ip_address: 172.24.225.17/28
+            no_autostate: true
+            pim:
+              ipv4:
+                sparse_mode: true
+            multicast:
+              ipv4:
+                static: true
+          - name: vlan2253
+            ip_address: 172.24.225.33/28
+            no_autostate: true
+            pim:
+              ipv4:
+                sparse_mode: true
+            multicast:
+              ipv4:
+                static: true
+    - name: media-leaf-2
+      platform: 7280R2
+      id: 7
+      bgp_as: 65427
+      mgmt_ip: 10.90.227.27/24
+      # Interface configured on SPINES to connect to this leaf
+      uplink_switch_interfaces: [Ethernet3/1, Ethernet3/1, Ethernet4/1, Ethernet4/1]
+    - name: media-leaf-3
+      platform: 7050X3
+      id: 9
+      bgp_as: 65429
+      mgmt_ip: 10.90.227.29/24
+      # Interface configured on SPINES to connect to this leaf
+      uplink_switch_interfaces: [Ethernet17/1, Ethernet17/1, Ethernet18/1, Ethernet18/1]
+      structured_config:
+        hardware:
+          speed_groups:
+          - speed_group: 7 
+            serdes: 25g
+          - speed_group: 8 
+            serdes: 25g
+    - name: media-leaf-4
+      platform: 720XP
+      id: 11
+      bgp_as: 65431
+      mgmt_ip: 10.90.227.31/24
+      # Interface configured on SPINES to connect to this leaf
+      uplink_switch_interfaces: [Ethernet25/1, Ethernet25/1]
+      uplink_interfaces: [Ethernet53/1, Ethernet54/1]
     

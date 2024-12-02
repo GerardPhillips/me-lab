@@ -15,37 +15,38 @@ ptp_leaf:
     uplink_interfaces: [Ethernet49/1, Ethernet51/1, Ethernet50/1, Ethernet52/1]
     max_parallel_uplinks: 4 # per leaf / per spine
   nodes:
-      media-PTP-1:
-        platform: 720XP
-        id: 1
-        bgp_as: 65421
-        mgmt_ip: 10.90.227.21/24
-        # Interface configured on SPINES to connect to this leaf
-        uplink_switch_interfaces: [Ethernet27/1, Ethernet27/1]
-        uplink_interfaces: [Ethernet51, Ethernet52]
-        structured_config:
-          vlans:
-            2222: 
-                name: vlan_PTP_1
-          vlan_interfaces:
-            vlan 2222:
-              ip_address: 172.24.121.65/30
-              no_autostate: true
+    - name: media-PTP-1
+      platform: 720XP
+      id: 1
+      bgp_as: 65421
+      mgmt_ip: 10.90.227.21/24
+      # Interface configured on SPINES to connect to this leaf
+      uplink_switch_interfaces: [Ethernet27/1, Ethernet27/1]
+      uplink_interfaces: [Ethernet51, Ethernet52]
+      structured_config:
+        vlans:
+          - id: 2222
+            name: vlan_PTP_1
+        vlan_interfaces:
+          - name: vlan2222
+            ip_address: 172.24.121.65/30
+            no_autostate: true
 
-      media-PTP-2:
-        platform: 720XP
-        id: 3
-        bgp_as: 65423
-        mgmt_ip: 10.90.227.23/24
-        # Interface configured on SPINES to connect to this leaf
-        uplink_switch_interfaces: [Ethernet28/1, Ethernet28/1]
-        uplink_interfaces: [Ethernet51, Ethernet52]
-        structured_config:
-          vlans:
-            2223: 
-                name: vlan_PTP_2
-          vlan_interfaces:
-            vlan 2223:
-              ip_address: 172.24.123.65/30
-              no_autostate: true
+    - name: media-PTP-2
+      platform: 720XP
+      id: 3
+      bgp_as: 65423
+      mgmt_ip: 10.90.227.23/24
+      # Interface configured on SPINES to connect to this leaf
+      uplink_switch_interfaces: [Ethernet28/1, Ethernet28/1]
+      uplink_interfaces: [Ethernet51, Ethernet52]
+      structured_config:
+        vlans:
+          - id: 2223 
+            name: vlan_PTP_2
+        vlan_interfaces:
+          - name : vlan2223
+            description: vlan_PTP_2
+            ip_address: 172.24.123.65/30
+            no_autostate: true
 

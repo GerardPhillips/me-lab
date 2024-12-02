@@ -22,21 +22,11 @@ media_spine:
       mcs_client:
         shutdown: false
       loopback_interfaces:
-        Loopback1:
+        - name: Loopback1
           ip_address: 172.24.0.10/32
           description: Anycast RP
-      router_pim_sparse_mode:
-        ipv4:
-          rp_addresses:
-          #Can't point to amber loopback0...
-            172.24.0.10:
-          anycast_rps:
-            172.24.0.10:
-              other_anycast_rp_addresses:
-                172.24.0.11:
-                172.24.0.12:
   nodes:
-    media-spine-1:
+    - name: media-spine-1
     #loopback0 = pooladdress + ID
       id: 1
       mgmt_ip: 10.90.227.11/24
@@ -46,13 +36,12 @@ media_spine:
       #uplink_switches: [jt-nm-mgt-1]
       #uplink_interfaces: [Ethernet11/1]
       uplink_interface_speed: forced 10000full
-      
       structured_config:
         hardware:
           speed_groups:
-            3: 
-              serdes: 10g
-    media-spine-2:
+          - speed_group: 3 
+            serdes: 10g
+    - name: media-spine-2
     #loopback0 = pooladdress + ID
       id: 2
       mgmt_ip: 10.90.227.12/24
@@ -65,7 +54,7 @@ media_spine:
       structured_config:
         hardware:
           speed_groups:
-            3: 
-              serdes: 10g
+          - speed_group: 3 
+            serdes: 10g
 
 
