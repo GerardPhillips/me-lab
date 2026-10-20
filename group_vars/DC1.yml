@@ -112,12 +112,6 @@ sflow:
 event_monitor:
   enabled: true
 
-# Allow 3rd party transceivers on all switches
-# DO NOT DISTRIBITE LICENSE OR CAPABILITY
-service_unsupported_transceiver:
-  license_name: FoxNetworksWoodlandsTesting
-  license_key: e9ae09fb
-
 #cvp_instance_ip: apiserver.arista.io
 #terminattr_smashexcludes: "ale,flexCounter,hardware,kni,pulse,strata"
 #terminattr_ingestexclude: "/Sysdb/cell/1/agent,/Sysdb/cell/2/agent"
